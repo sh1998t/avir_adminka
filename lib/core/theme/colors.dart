@@ -11,4 +11,7 @@ class AppColors {
   static const Color tealAccent = Colors.tealAccent;
   static const Color drawerColors = Color(0XFFE8E8E8);
   static const Color green = Color(0xFF48D33E);
+  static const Color textFieldBack = Color(0xFFF6F6F6);
+  static const Color secondary = Color(0xFF4C93E1);
+  static const Color unselectedColor = Color(0xFFD5D5D5);
 }

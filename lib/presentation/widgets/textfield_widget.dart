@@ -43,7 +43,7 @@ class MainTextField extends StatelessWidget {
       children: [
         Text(
           title ?? '',
-          style: TextStyle(color: AppColors.black),
+          style: Theme.of(context).textTheme.bodyLarge,
         ),
         const SizedBox(
           height: 10,
@@ -64,7 +64,7 @@ class MainTextField extends StatelessWidget {
               contentPadding: contentPadding,
               prefix: const SizedBox(),
               prefixIcon: prefix,
-              fillColor: AppColors.white,
+              fillColor: AppColors.textFieldBack,
               hintText: hintText,
               hintStyle: TextStyle(fontSize: 16, color: AppColors.black38),
               filled: true,
@@ -78,9 +78,6 @@ class MainTextField extends StatelessWidget {
               ),
             ),
           ),
-        ),
-        const SizedBox(
-          height: 15,
         ),
       ],
     );

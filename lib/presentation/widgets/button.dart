@@ -42,7 +42,10 @@ class MyButton extends StatelessWidget {
         onPressed: onPressed,
         child: Text(
           text,
-          style: Theme.of(context).textTheme.headlineMedium,
+          style: Theme.of(context)
+              .textTheme
+              .bodyMedium
+              ?.copyWith(color: textColor, fontWeight: FontWeight.w600),
         ),
       ),
     );

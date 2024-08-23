@@ -4,5 +4,21 @@
   "password": "пароль",
   "enter": "Войти",
   "passport": "Фуқаролик паспорти",
-  "user": "Foydalanuvchi"
+  "user": "Foydalanuvchi",
+  "session_limit": "Данная сессия будет активна 8 часов",
+  "active": "Активные",
+  "applications": "Заявки",
+  "history": "История",
+  "exit": "Выход",
+  "create_service_title": "Услуга: Создание заявки на ...",
+  "step": "Шаг",
+  "step_subtitle": "Информация о заявителе"
+
+
+
+
+
+
+
+
 }

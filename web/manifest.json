@@ -1,6 +1,6 @@
 {
-    "name": "avir_app",
-    "short_name": "avir_app",
+    "name": "avir_adminka",
+    "short_name": "avir_adminka",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

@@ -1,7 +1,16 @@
 {
-  "login_title": "IIV huzuridagi II va ASXKM DUKning Fuqarolarni murojatlarini online qabul qilish tizimi",
-  "login": "Лoгин",
+  "login_title": "IIV huzuridagi II va AHKSM DUKNING Fuqarolarni murijatlarini online qabul qilish tizimi",
+  "login": "Логин",
   "password": "пароль",
   "enter": "Войти",
-   "user": "Пользователь"
+   "user": "Пользователь",
+  "session_limit": "Данная сессия будет активна 8 часов",
+  "active": "Активные",
+  "applications": "Заявки",
+  "history": "История",
+  "exit": "Выход",
+  "create_service_title": "Услуга: Создание заявки на ...",
+  "step": "Шаг",
+  "step_subtitle": "Информация о заявителе",
+  "select_type_application": "Выберите тип заявки"
 }
