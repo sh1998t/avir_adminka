@@ -18,7 +18,7 @@ class MainTextField extends StatelessWidget {
     this.onchange,
     this.contentPadding,
     this.validator,
-    this.title,
+    this.title, this.textCapitalization,
   });
 
   final Widget? prefix;
@@ -35,23 +35,28 @@ class MainTextField extends StatelessWidget {
   final EdgeInsetsGeometry? contentPadding;
   final String? Function(String?)? validator;
   final String? title;
+  final TextCapitalization? textCapitalization;
 
   @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          title ?? '',
-          style: Theme.of(context).textTheme.bodyLarge,
+        Visibility(
+          visible: title?.isNotEmpty ?? false,
+          child: Text(
+            title ?? '',
+            style: Theme.of(context).textTheme.bodyLarge,
+          ),
         ),
         const SizedBox(
-          height: 10,
+          height: 5,
         ),
         SizedBox(
           width: width,
           height: height,
           child: TextFormField(
+            textCapitalization: textCapitalization ?? TextCapitalization.none,
             controller: controller,
             textAlign: textAlign ?? TextAlign.start,
             inputFormatters: inputFormatters,
@@ -66,7 +71,7 @@ class MainTextField extends StatelessWidget {
               prefixIcon: prefix,
               fillColor: AppColors.textFieldBack,
               hintText: hintText,
-              hintStyle: TextStyle(fontSize: 16, color: AppColors.black38),
+              hintStyle: TextStyle(fontSize: 14, color: AppColors.hintText, fontWeight: FontWeight.w500),
               filled: true,
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(8),
@@ -74,7 +79,7 @@ class MainTextField extends StatelessWidget {
               ),
               enabledBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(8),
-                borderSide: BorderSide(color: AppColors.black38, width: 1),
+                borderSide: BorderSide(color: AppColors.white, width: 1),
               ),
             ),
           ),

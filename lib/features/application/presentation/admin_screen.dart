@@ -1,29 +1,34 @@
 import 'package:avir_app/core/theme/colors.dart';
-import 'package:avir_app/presentation/screens/admin_screen/widgets/application_button.dart';
-
-import 'package:avir_app/presentation/widgets/language_widget.dart';
-import 'package:avir_app/presentation/widgets/main_container.dart';
+import 'package:avir_app/features/application/presentation/widgets/application_button.dart';
+import 'package:avir_app/features/application/presentation/widgets/application_widget.dart';
+import 'package:avir_app/features/widgets/button.dart';
+import 'package:avir_app/features/widgets/main_appbar.dart';
+import 'package:avir_app/features/widgets/main_container.dart';
+import 'package:avir_app/features/widgets/textfield_widget.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-import '../../widgets/phone_number_widget.dart';
+class HomeScreen extends StatefulWidget {
+  static const String name = 'home-screen';
+  static const String path = '/home-screen';
 
-class AdminScreen extends StatefulWidget {
-  const AdminScreen({super.key});
+  const HomeScreen({super.key});
 
   @override
-  State<AdminScreen> createState() => _AdminScreenState();
+  State<HomeScreen> createState() => _HomeScreenState();
 }
 
-class _AdminScreenState extends State<AdminScreen> {
+class _HomeScreenState extends State<HomeScreen> {
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         body: Row(
       children: [
         MainContainer(
-          padding: EdgeInsets.all(32),
+          padding: const EdgeInsets.all(32),
           width: 335,
           child: MainContainer(
             borderRadius: 20,
@@ -36,7 +41,7 @@ class _AdminScreenState extends State<AdminScreen> {
                         fontWeight: FontWeight.w600,
                       ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 ApplicationButtonWidget(
@@ -45,7 +50,7 @@ class _AdminScreenState extends State<AdminScreen> {
                   onPressed: () {},
                   isActive: false,
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 ApplicationButtonWidget(
@@ -54,7 +59,7 @@ class _AdminScreenState extends State<AdminScreen> {
                   onPressed: () {},
                   isActive: false,
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 ApplicationButtonWidget(
@@ -71,20 +76,74 @@ class _AdminScreenState extends State<AdminScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              MainNavbar(),
-              StepsWidget(),
-              SizedBox(height: 22,),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 28),
-                child: Column(children: [
-                  Text('select_type_application'.tr(), style: Theme.of(context).textTheme.bodyMedium,)
-                ],),
-              )
+              const MainNavbar(),
+              ApplicationWidget()
             ],
           ),
         )
       ],
     ));
+  }
+}
+
+class MainOutlineButton extends StatelessWidget {
+  final bool? isActive;
+  final String title;
+  final VoidCallback onPressed;
+
+  const MainOutlineButton({
+    super.key,
+    required this.isActive,
+    required this.title,
+    required this.onPressed,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: 46,
+      width: 251,
+      child: OutlinedButton(
+          style: OutlinedButton.styleFrom(
+              side: const BorderSide(color: Color(0xFFE0E0E0))),
+          onPressed: onPressed,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                title,
+                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                      fontWeight: FontWeight.w500,
+                    ),
+              ),
+              Container(
+                padding: const EdgeInsets.all(5),
+                decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: Colors.white,
+                    boxShadow: [
+                      BoxShadow(
+                          color: Colors.black.withOpacity(0.25),
+                          blurRadius: 4,
+                          spreadRadius: 0,
+                          offset: const Offset(0, 0)),
+                    ]),
+                width: 20,
+                height: 20,
+                child: Visibility(
+                  visible: isActive != null,
+                  child: DecoratedBox(
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color:
+                          (isActive ?? false) ? AppColors.green : Colors.white,
+                    ),
+                  ),
+                ),
+              )
+            ],
+          )),
+    );
   }
 }
 
@@ -96,11 +155,11 @@ class StepsWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(
+      padding: const EdgeInsets.symmetric(
         horizontal: 28,
         vertical: 22,
       ),
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         gradient: LinearGradient(
           colors: [
             Color(0xFF166DCC),
@@ -119,13 +178,12 @@ class StepsWidget extends StatelessWidget {
                   fontWeight: FontWeight.w400,
                 ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 12,
           ),
           DecoratedBox(
             decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(20)),
+                color: Colors.white, borderRadius: BorderRadius.circular(20)),
             child: Padding(
               padding: const EdgeInsets.all(12),
               child: Row(
@@ -136,25 +194,32 @@ class StepsWidget extends StatelessWidget {
                     onPressed: () {},
                     subtitle: 'step_subtitle'.tr(),
                   ),
-                  SizedBox(width: 10,),
+                  const SizedBox(
+                    width: 10,
+                  ),
                   SvgPicture.asset('assets/svg/arror_farword.svg'),
-                  SizedBox(width: 10,),
+                  const SizedBox(
+                    width: 10,
+                  ),
                   StepWidget(
                     isActive: false,
                     title: '${'step'.tr()} 1',
                     onPressed: () {},
                     subtitle: 'step_subtitle'.tr(),
                   ),
-                  SizedBox(width: 10,),
+                  const SizedBox(
+                    width: 10,
+                  ),
                   SvgPicture.asset('assets/svg/arror_farword.svg'),
-                  SizedBox(width: 10,),
+                  const SizedBox(
+                    width: 10,
+                  ),
                   StepWidget(
                     isActive: false,
                     title: '${'step'.tr()} 1',
                     onPressed: () {},
                     subtitle: 'step_subtitle'.tr(),
                   ),
-
                 ],
               ),
             ),
@@ -184,7 +249,7 @@ class StepWidget extends StatelessWidget {
     return GestureDetector(
       onTap: onPressed,
       child: Container(
-        padding: EdgeInsets.all(12),
+        padding: const EdgeInsets.all(12),
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(20),
             color: isActive ? AppColors.secondary : AppColors.unselectedColor),
@@ -199,7 +264,7 @@ class StepWidget extends StatelessWidget {
                     color: Colors.white,
                   ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 4,
             ),
             Text(
@@ -211,81 +276,6 @@ class StepWidget extends StatelessWidget {
             )
           ],
         ),
-      ),
-    );
-  }
-}
-
-class MainNavbar extends StatelessWidget {
-  const MainNavbar({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      height: 70,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.end,
-        children: [
-          PhoneNumberWidget(),
-          SizedBox(
-            width: 20,
-          ),
-          LanguageWidget(),
-          SizedBox(
-            width: 20,
-          ),
-          SizedBox(
-            height: 50,
-            child: ElevatedButton(
-                style: ElevatedButton.styleFrom(padding: EdgeInsets.all(10)),
-                onPressed: () {},
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    CircleAvatar(
-                      child: SvgPicture.asset('assets/svg/profile.svg'),
-                      backgroundColor: Colors.white,
-                    ),
-                    SizedBox(
-                      width: 10,
-                    ),
-                    Text(
-                      "profile:ID",
-                      style: Theme.of(context)
-                          .textTheme
-                          .bodyMedium
-                          ?.copyWith(color: Colors.white),
-                    )
-                  ],
-                )),
-          ),
-          SizedBox(
-            width: 20,
-          ),
-          SizedBox(
-            height: 50,
-            child: ElevatedButton(
-                style: ElevatedButton.styleFrom(backgroundColor: Colors.white),
-                onPressed: () {},
-                child: Row(
-                  children: [
-                    Text(
-                      'exit',
-                      style: Theme.of(context).textTheme.bodyMedium,
-                    ).tr(),
-                    SizedBox(
-                      width: 10,
-                    ),
-                    SvgPicture.asset('assets/svg/Logout.svg')
-                  ],
-                )),
-          ),
-          SizedBox(
-            width: 20,
-          )
-        ],
       ),
     );
   }

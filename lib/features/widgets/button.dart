@@ -39,8 +39,8 @@ class MyButton extends StatelessWidget {
             backgroundColor: AppColors.primary,
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(10))),
-        onPressed: onPressed,
-        child: Text(
+        onPressed: (isLoading ?? false) ? null: onPressed,
+        child: (isLoading ?? false)? const CircularProgressIndicator(): Text(
           text,
           style: Theme.of(context)
               .textTheme

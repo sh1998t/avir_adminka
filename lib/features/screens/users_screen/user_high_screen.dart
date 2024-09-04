@@ -1,6 +1,6 @@
 import 'package:avir_app/core/theme/colors.dart';
-import 'package:avir_app/presentation/widgets/show_dialog_widget.dart';
-import 'package:avir_app/presentation/widgets/textfield_widget.dart';
+import 'package:avir_app/features/widgets/show_dialog_widget.dart';
+import 'package:avir_app/features/widgets/textfield_widget.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
@@ -56,6 +56,7 @@ class UserHighScreen extends StatelessWidget {
                                 title: 'hello',
                                 height: 40,
                                 width: 800,
+                                style: TextStyle(color: AppColors.primary),
                               ),
                             ),
                             Padding(

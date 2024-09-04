@@ -1,5 +1,5 @@
 import 'package:avir_app/core/theme/colors.dart';
-import 'package:avir_app/presentation/screens/users_screen/user_high_screen.dart';
+import 'package:avir_app/features/screens/users_screen/user_high_screen.dart';
 import 'package:flutter/material.dart';
 
 class UsersScreen extends StatelessWidget {

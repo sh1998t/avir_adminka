@@ -14,4 +14,7 @@ class AppColors {
   static const Color textFieldBack = Color(0xFFF6F6F6);
   static const Color secondary = Color(0xFF4C93E1);
   static const Color unselectedColor = Color(0xFFD5D5D5);
+  static const Color hintText = Color(0xFFC8C8C8);
+  static const Color divider = Color(0xFF176FCD);
+
 }

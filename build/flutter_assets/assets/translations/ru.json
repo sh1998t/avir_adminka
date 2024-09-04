@@ -11,5 +11,17 @@
   "exit": "Выход",
   "create_service_title": "Услуга: Создание заявки на ...",
   "step": "Шаг",
-  "step_subtitle": "Информация о заявителе"
+  "step_subtitle": "Информация о заявителе",
+  "select_type_application": "Выберите тип заявки",
+  "method": "Метод",
+  "select_type_document": "Выберите тип документа",
+  "serial_pass_number": "Серия и номер паспорта",
+  "date_of_birth": "Дата рождения",
+  "address": "Адрес",
+  "parent_info": "Данные родителей",
+  "check": "проверить",
+  "pinfl": "ПИНФЛ",
+  "passport": "Паспорт",
+  "ID": "ID"
+
 }
