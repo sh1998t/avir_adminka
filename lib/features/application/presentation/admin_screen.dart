@@ -1,10 +1,8 @@
 import 'package:avir_app/core/theme/colors.dart';
 import 'package:avir_app/features/application/presentation/widgets/application_button.dart';
 import 'package:avir_app/features/application/presentation/widgets/application_widget.dart';
-import 'package:avir_app/features/widgets/button.dart';
 import 'package:avir_app/features/widgets/main_appbar.dart';
 import 'package:avir_app/features/widgets/main_container.dart';
-import 'package:avir_app/features/widgets/textfield_widget.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -20,8 +18,6 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -72,13 +68,16 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ),
         ),
-        Expanded(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const MainNavbar(),
-              ApplicationWidget()
-            ],
+        const Expanded(
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                MainNavbar(),
+                ApplicationWidget(),
+                SizedBox(width: 10),
+              ],
+            ),
           ),
         )
       ],

@@ -4,14 +4,14 @@ abstract class ApplicationRequestEntity {
   final String? pinpp;
   final bool parents;
   final bool address;
+  final int? documentType;
 
-  ApplicationRequestEntity(
-    {
+  ApplicationRequestEntity({
     this.serialNumber,
     this.dateBirth,
     this.pinpp,
     required this.parents,
-        required this.address,
-
+    required this.address,
+    this.documentType,
   });
 }

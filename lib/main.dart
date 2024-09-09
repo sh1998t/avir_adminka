@@ -1,8 +1,6 @@
 import 'package:avir_app/core/DI/di_container.dart';
 import 'package:avir_app/core/theme/app_theme.dart';
 import 'package:avir_app/core/utils/route/go_router.dart';
-import 'package:avir_app/features/auth/presentation/login_screen.dart';
-
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 

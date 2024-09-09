@@ -50,9 +50,7 @@ mixin _$ApplicationEvent {
   }) =>
       throw _privateConstructorUsedError;
 
-  /// Create a copy of ApplicationEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $ApplicationEventCopyWith<ApplicationEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -76,8 +74,6 @@ class _$ApplicationEventCopyWithImpl<$Res, $Val extends ApplicationEvent>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of ApplicationEvent
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -111,8 +107,6 @@ class __$$GetUserInfoEventImplCopyWithImpl<$Res>
       $Res Function(_$GetUserInfoEventImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of ApplicationEvent
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -151,9 +145,7 @@ class _$GetUserInfoEventImpl implements _GetUserInfoEvent {
   @override
   int get hashCode => Object.hash(runtimeType, request);
 
-  /// Create a copy of ApplicationEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$GetUserInfoEventImplCopyWith<_$GetUserInfoEventImpl> get copyWith =>
@@ -223,11 +215,8 @@ abstract class _GetUserInfoEvent implements ApplicationEvent {
 
   @override
   UserInfoRequest get request;
-
-  /// Create a copy of ApplicationEvent
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$GetUserInfoEventImplCopyWith<_$GetUserInfoEventImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -238,9 +227,7 @@ mixin _$ApplicationState {
   ErrorModel? get error => throw _privateConstructorUsedError;
   PersonModel? get userInfo => throw _privateConstructorUsedError;
 
-  /// Create a copy of ApplicationState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $ApplicationStateCopyWith<ApplicationState> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -264,8 +251,6 @@ class _$ApplicationStateCopyWithImpl<$Res, $Val extends ApplicationState>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of ApplicationState
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -309,8 +294,6 @@ class __$$ApplicationStateImplCopyWithImpl<$Res>
       $Res Function(_$ApplicationStateImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of ApplicationState
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -369,9 +352,7 @@ class _$ApplicationStateImpl implements _ApplicationState {
   @override
   int get hashCode => Object.hash(runtimeType, isLoading, error, userInfo);
 
-  /// Create a copy of ApplicationState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$ApplicationStateImplCopyWith<_$ApplicationStateImpl> get copyWith =>
@@ -391,11 +372,8 @@ abstract class _ApplicationState implements ApplicationState {
   ErrorModel? get error;
   @override
   PersonModel? get userInfo;
-
-  /// Create a copy of ApplicationState
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$ApplicationStateImplCopyWith<_$ApplicationStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

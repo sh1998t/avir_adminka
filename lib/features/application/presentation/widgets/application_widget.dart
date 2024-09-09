@@ -34,7 +34,7 @@ class _ApplicationWidgetState extends State<ApplicationWidget> {
       filter: {"#": RegExp(r'[0-9]')},
       type: MaskAutoCompletionType.lazy);
 
-  final List<DocumentType> types = [DocumentType.ID, DocumentType.passport];
+  final List<DocumentType> types = [DocumentType.id, DocumentType.passport];
 
   @override
   void initState() {
@@ -134,7 +134,7 @@ class _ApplicationWidgetState extends State<ApplicationWidget> {
                           return DropdownMenuItem<DocumentType>(
                             value: value,
                             child: Text(
-                              value.key.tr(),
+                              (value.key['key'] as String).tr(),
                               style: Theme.of(context).textTheme.bodyMedium,
                             ),
                           );
@@ -142,7 +142,7 @@ class _ApplicationWidgetState extends State<ApplicationWidget> {
                       ),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 24,
                   ),
                   Row(
@@ -344,10 +344,13 @@ class _ApplicationWidgetState extends State<ApplicationWidget> {
                             ApplicationEvent.getUserInfo(
                               UserInfoRequest(
                                 pinpp: _pinppController.text,
-                                // serialNumber:
-                                //     "${_passSeriesController.text}${_passNumberController.text}",
+                                serialNumber:
+                                    "${_passSeriesController.text}${_passNumberController.text}",
                                 parents: _parents,
                                 address: _address,
+                                documentType: _documentType.key["id"],
+                                // dateBirth: _dateOfBirthController.text,
+
                                 // dateBirth: _dateOfBirthController.text,
                               ),
                             ),
@@ -357,14 +360,14 @@ class _ApplicationWidgetState extends State<ApplicationWidget> {
                     height: 58,
                     textColor: Colors.white,
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 22,
                   ),
-                  Divider(
+                  const Divider(
                     color: AppColors.divider,
                     thickness: 3,
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 22,
                   ),
                   Row(
@@ -374,15 +377,128 @@ class _ApplicationWidgetState extends State<ApplicationWidget> {
                         title: 'GUID',
                         value: user?.person.guid ?? "",
                       ),
-                      SizedBox(width: 22,),
-                      InfoWidget(title: 'pinfl'.tr(), value: user?.person.pinpp ?? "" , width: 151,)
+                      const SizedBox(
+                        width: 22,
+                      ),
+                      InfoWidget(
+                        title: 'pinfl'.tr(),
+                        value: user?.person.pinpp ?? "",
+                        width: 151,
+                      )
                     ],
                   ),
-                  SizedBox(height: 22,),
-                  Column(children: [],)
+                  const SizedBox(
+                    height: 22,
+                  ),
+                  Row(
+                    children: [
+                      InfoWidgetTwo(
+                        height: 117,
+                        width: 335,
+                        title: 'Район рождения',
+                        value: user?.person.patronymCirillic ?? "",
+                        valueTwo: user?.person.patronymLatin ?? "",
+                        valueThree: user?.person.patronymEnglish ?? "",
+                      ),
+                      const SizedBox(width: 10),
+                      InfoWidgetTwo(
+                        height: 117,
+                        width: 335,
+                        title: 'Район рождения',
+                        value: user?.person.patronymCirillic ?? "",
+                        valueTwo: user?.person.patronymLatin ?? "",
+                        valueThree: user?.person.patronymEnglish ?? "",
+                      ),
+                      const SizedBox(width: 10),
+                      InfoWidgetTwo(
+                        height: 117,
+                        width: 335,
+                        title: 'Район рождения',
+                        value: user?.person.patronymCirillic ?? "",
+                        valueTwo: user?.person.patronymLatin ?? "",
+                        valueThree: user?.person.patronymEnglish ?? "",
+                      ),
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 22,
+                  ),
+                  Row(
+                    children: [
+                      InfoWidget(
+                        width: 251,
+                        title: 'дате рождения ',
+                        value: user?.person.dateBirth ?? "",
+                      ),
+                      const SizedBox(
+                        width: 22,
+                      ),
+                      InfoWidget(
+                        title: 'пол ',
+                        value: user?.person.sex.value ?? "",
+                        width: 130,
+                      ),
+                      const SizedBox(
+                        width: 22,
+                      ),
+                      InfoWidget(
+                        title: 'Национальность ',
+                        value: user?.person.nationality.value ?? " ",
+                        width: 130,
+                      ),
+                      const SizedBox(
+                        width: 22,
+                      ),
+                      InfoWidget(
+                        title: 'Гражданство ',
+                        value: user?.person.citizenship.value ?? "",
+                        width: 472,
+                      ),
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 22,
+                  ),
+                  Row(
+                    children: [
+                      InfoWidget(
+                        width: 335,
+                        title: 'Территория рождения ',
+                        value: user?.person.birthRegion.value ?? "",
+                      ),
+                      SizedBox(
+                        width: 22,
+                      ),
+                      InfoWidget(
+                        width: 335,
+                        title: 'Область рождения',
+                        value: user?.person.birthRegion.value ?? "",
+                      ),
+                      SizedBox(
+                        width: 22,
+                      ),
+                      InfoWidget(
+                        width: 335,
+                        title: 'Район рождения ',
+                        value: user?.person.birthDistrict.value ?? "",
+                      ),
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 22,
+                  ),
+                  InfoWidgetTwo(
+                      width: MediaQuery.of(context).size.width - 20,
+                      title: 'Район рождения',
+                      value: "КИРИЛИЦА",
+                      valueTwo: "(ЛАТЫНИЦА)",
+                      valueThree: "(АНГЛ)")
                 ],
               ),
             ),
+            const SizedBox(
+              height: 20,
+            )
           ],
         );
       },
@@ -413,17 +529,87 @@ class InfoWidget extends StatelessWidget {
           title,
           style: Theme.of(context).textTheme.bodyMedium,
         ),
-        SizedBox(
+        const SizedBox(
           height: 5,
         ),
         Container(
           width: width,
           height: height ?? 46,
-          padding: EdgeInsets.all(12),
+          padding: const EdgeInsets.all(12),
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(4),
               color: AppColors.textFieldBack),
-          child: Text(value, style: Theme.of(context).textTheme.bodyMedium,),
+          child: Text(
+            value,
+            style: Theme.of(context).textTheme.bodyMedium,
+          ),
+        )
+      ],
+    );
+  }
+}
+
+class InfoWidgetTwo extends StatelessWidget {
+  const InfoWidgetTwo({
+    super.key,
+    required this.title,
+    this.width,
+    this.height,
+    required this.value,
+    required this.valueTwo,
+    required this.valueThree,
+  });
+
+  final String title;
+  final double? width;
+  final double? height;
+  final String value;
+  final String valueTwo;
+  final String valueThree;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          title,
+          style: Theme.of(context).textTheme.bodyMedium,
+        ),
+        const SizedBox(
+          height: 5,
+        ),
+        Container(
+          width: width ?? 320,
+          height: height ?? 120,
+          padding: const EdgeInsets.all(12),
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(4),
+              color: AppColors.textFieldBack),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                value,
+                style: Theme.of(context).textTheme.bodyMedium,
+              ),
+              const SizedBox(
+                height: 5,
+              ),
+              Text(
+                valueTwo,
+                style: Theme.of(context).textTheme.bodyMedium,
+              ),
+              const SizedBox(
+                height: 5,
+              ),
+              Text(
+                valueTwo,
+                style: Theme.of(context).textTheme.bodyMedium,
+              ),
+            ],
+          ),
         )
       ],
     );

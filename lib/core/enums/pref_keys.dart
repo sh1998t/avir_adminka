@@ -8,14 +8,17 @@ enum PrefKeys {
   final String key;
 }
 
+enum DocumentType {
+  passport({
+    "key": "passport",
+    "id": 0,
+  }),
+  id({
+    "key": "ID",
+    "id": 1,
+  });
 
-enum DocumentType{
-  passport("passport"),
-  ID("ID");
-  final String key;
+  final Map<String, dynamic> key;
 
   const DocumentType(this.key);
-
-
-
 }

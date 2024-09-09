@@ -18,7 +18,8 @@ class MainTextField extends StatelessWidget {
     this.onchange,
     this.contentPadding,
     this.validator,
-    this.title, this.textCapitalization,
+    this.title,
+    this.textCapitalization,
   });
 
   final Widget? prefix;
@@ -63,7 +64,7 @@ class MainTextField extends StatelessWidget {
             maxLength: maxLength,
             onChanged: onchange,
             validator: validator,
-            style: TextStyle(color: Colors.black),
+            style: const TextStyle(color: Colors.black),
             keyboardType: keyboardType,
             decoration: InputDecoration(
               contentPadding: contentPadding,
@@ -71,7 +72,10 @@ class MainTextField extends StatelessWidget {
               prefixIcon: prefix,
               fillColor: AppColors.textFieldBack,
               hintText: hintText,
-              hintStyle: TextStyle(fontSize: 14, color: AppColors.hintText, fontWeight: FontWeight.w500),
+              hintStyle: TextStyle(
+                  fontSize: 14,
+                  color: AppColors.hintText,
+                  fontWeight: FontWeight.w500),
               filled: true,
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(8),
