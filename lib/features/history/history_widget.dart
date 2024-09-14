@@ -1,4 +1,3 @@
-import 'package:avir_app/features/application/presentation/admin_screen.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
