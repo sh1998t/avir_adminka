@@ -9,39 +9,45 @@ class ApplicationButtonWidget extends StatelessWidget {
   final VoidCallback onPressed;
   final String title;
   final bool isActive;
+  final Function onTap;
 
-  const ApplicationButtonWidget({
-    super.key,
-    required this.svgUrl,
-    required this.onPressed,
-    required this.title, required this.isActive,
-  });
+  const ApplicationButtonWidget(
+      {super.key,
+      required this.svgUrl,
+      required this.onPressed,
+      required this.title,
+      required this.isActive,
+      required this.onTap});
 
   @override
   Widget build(BuildContext context) {
     return AnimatedContainer(
-      height: isActive ? 72 : 48 ,
-      width: 251,
-      padding: EdgeInsets.all(13),
-      decoration: BoxDecoration(
-          boxShadow: AppShadow.main,
-          borderRadius: BorderRadius.circular(10),
-          color: Colors.white,
-          border: Border(left: BorderSide(color: isActive ? AppColors.green: Colors.white, width: 4))
-      ),
-      duration: Duration(milliseconds: 500),
-      child: Row(
-        children: [
-          SvgPicture.asset(svgUrl),
-          SizedBox(
-            width: 10,
+        height: isActive ? 72 : 48,
+        width: 251,
+        padding: EdgeInsets.all(13),
+        decoration: BoxDecoration(
+            boxShadow: AppShadow.main,
+            borderRadius: BorderRadius.circular(10),
+            color: Colors.white,
+            border: Border(
+                left: BorderSide(
+                    color: isActive ? AppColors.green : Colors.white,
+                    width: 4))),
+        duration: Duration(milliseconds: 500),
+        child: InkWell(
+          onTap: onTap(),
+          child: Row(
+            children: [
+              SvgPicture.asset(svgUrl),
+              SizedBox(
+                width: 10,
+              ),
+              Text(
+                title,
+                style: Theme.of(context).textTheme.bodyMedium,
+              ).tr()
+            ],
           ),
-          Text(
-            title,
-            style: Theme.of(context).textTheme.bodyMedium,
-          ).tr()
-        ],
-      ),
-    );
+        ));
   }
 }

@@ -1,11 +1,12 @@
 import 'package:avir_app/core/theme/colors.dart';
 import 'package:avir_app/features/application/presentation/widgets/application_button.dart';
-import 'package:avir_app/features/application/presentation/widgets/application_widget.dart';
 import 'package:avir_app/features/widgets/main_appbar.dart';
 import 'package:avir_app/features/widgets/main_container.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+
+import '../application/presentation/widgets/application_widget.dart';
 
 class HomeScreen extends StatefulWidget {
   static const String name = 'home-screen';
@@ -18,6 +19,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  String _activeScreen = 'active';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,6 +43,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   height: 10,
                 ),
                 ApplicationButtonWidget(
+                  onTap: () {},
                   svgUrl: 'svg/play.svg',
                   title: 'active',
                   onPressed: () {},
@@ -50,6 +53,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   height: 10,
                 ),
                 ApplicationButtonWidget(
+                  onTap: () {},
                   svgUrl: 'svg/time.svg',
                   title: 'history',
                   onPressed: () {},
@@ -59,6 +63,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   height: 10,
                 ),
                 ApplicationButtonWidget(
+                  onTap: () {},
                   svgUrl: 'svg/add-outline.svg',
                   title: 'history',
                   onPressed: () {},
@@ -74,8 +79,9 @@ class _HomeScreenState extends State<HomeScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 MainNavbar(),
+                // ActiveScreen(),
                 ApplicationWidget(),
-                SizedBox(width: 10),
+                // SizedBox(width: 10),
               ],
             ),
           ),

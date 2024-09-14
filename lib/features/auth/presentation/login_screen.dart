@@ -1,7 +1,7 @@
 import 'package:avir_app/core/utils/shadows/shadows.dart';
 import 'package:avir_app/features/auth/data/model/login_request.dart';
 import 'package:avir_app/features/auth/presentation/bloc/auth_bloc.dart';
-import 'package:avir_app/features/application/presentation/admin_screen.dart';
+import 'package:avir_app/features/screens/admin_screen.dart';
 import 'package:avir_app/features/widgets/button.dart';
 import 'package:avir_app/features/widgets/language_widget.dart';
 import 'package:avir_app/features/widgets/phone_number_widget.dart';
