@@ -16,7 +16,7 @@ class AuthRepositoryImpl extends AuthRepository{
   @override
   Future<void> login(LoginRequest request) async {
   final LoginResponse response =  await _api.login(request);
-  _preference.setAccessToken(response.accessToken);
+  await _preference.setAccessToken(response.accessToken);
   }
 
 }

@@ -22,6 +22,18 @@
   "check": "проверить",
   "pinfl": "ПИНФЛ",
   "passport": "Паспорт",
-  "ID": "id"
+  "ID": "id",
+  "name": "Имя",
+  "surname": "Фамилия",
+  "gender": "Пол",
+  "nationality": "Национальность",
+  "citizenship": "Гражданство",
+  "birth_territory": "Территория рождения",
+  "birth_region": "Область рождения",
+  "birth_district": "Район рождения",
+  "create_application": "Создать заявку"
+
+
+
 
 }

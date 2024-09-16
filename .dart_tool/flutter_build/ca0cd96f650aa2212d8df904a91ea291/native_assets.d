@@ -1,1 +1,0 @@
- /Users/feruzbekabduraximov/davr\ smart/avir_adminka/.dart_tool/flutter_build/ca0cd96f650aa2212d8df904a91ea291/native_assets.yaml: 

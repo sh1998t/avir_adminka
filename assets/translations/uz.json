@@ -22,7 +22,19 @@
   "parent_info": "Данные родителей",
   "check": "проверить",
   "pinfl": "ПИНФЛ",
-  "ID": "id"
+  "ID": "id",
+  "name": "Ism",
+  "surname": "Familiya",
+  "gender": "Пол",
+  "nationality": "Национальность",
+"citizenship": "Гражданство",
+  "birth_territory": "Территория рождения",
+  "birth_region": "Область рождения",
+  "birth_district": "Район рождения",
+  "create_application": "Создать заявку"
+
+
+
 
 
 

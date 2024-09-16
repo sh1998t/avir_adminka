@@ -1,3 +1,5 @@
+import 'package:avir_app/core/DI/di_container.dart';
+import 'package:avir_app/core/storage/app_preference.dart';
 import 'package:avir_app/features/widgets/language_widget.dart';
 import 'package:avir_app/features/widgets/phone_number_widget.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -16,27 +18,27 @@ class MainNavbar extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
-          PhoneNumberWidget(),
-          SizedBox(
+          const PhoneNumberWidget(),
+          const SizedBox(
             width: 20,
           ),
-          LanguageWidget(),
-          SizedBox(
+          const LanguageWidget(),
+          const SizedBox(
             width: 20,
           ),
           SizedBox(
             height: 50,
             child: ElevatedButton(
-                style: ElevatedButton.styleFrom(padding: EdgeInsets.all(10)),
+                style: ElevatedButton.styleFrom(padding: const EdgeInsets.all(10)),
                 onPressed: () {},
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     CircleAvatar(
-                      child: SvgPicture.asset('assets/svg/profile.svg'),
                       backgroundColor: Colors.white,
+                      child: SvgPicture.asset('assets/svg/profile.svg'),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 10,
                     ),
                     Text(
@@ -49,28 +51,30 @@ class MainNavbar extends StatelessWidget {
                   ],
                 )),
           ),
-          SizedBox(
+          const SizedBox(
             width: 20,
           ),
           SizedBox(
             height: 50,
             child: ElevatedButton(
                 style: ElevatedButton.styleFrom(backgroundColor: Colors.white),
-                onPressed: () {},
+                onPressed: () {
+                  inject<AppPreference>().deleteToken();
+                },
                 child: Row(
                   children: [
                     Text(
                       'exit',
                       style: Theme.of(context).textTheme.bodyMedium,
                     ).tr(),
-                    SizedBox(
+                    const SizedBox(
                       width: 10,
                     ),
                     SvgPicture.asset('assets/svg/Logout.svg')
                   ],
                 )),
           ),
-          SizedBox(
+          const SizedBox(
             width: 20,
           )
         ],

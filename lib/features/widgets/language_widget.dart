@@ -16,6 +16,7 @@ class _LanguageWidgetState extends State<LanguageWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
+      width: 175,
       padding: const EdgeInsets.all(10),
       decoration: BoxDecoration(
         boxShadow: AppShadow.main,

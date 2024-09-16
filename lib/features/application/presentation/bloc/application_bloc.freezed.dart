@@ -16,20 +16,20 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$ApplicationEvent {
-  UserInfoRequest get request => throw _privateConstructorUsedError;
+  ApplicationRequestEntity get request => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(UserInfoRequest request) getUserInfo,
+    required TResult Function(ApplicationRequestEntity request) getUserInfo,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(UserInfoRequest request)? getUserInfo,
+    TResult? Function(ApplicationRequestEntity request)? getUserInfo,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(UserInfoRequest request)? getUserInfo,
+    TResult Function(ApplicationRequestEntity request)? getUserInfo,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -50,7 +50,9 @@ mixin _$ApplicationEvent {
   }) =>
       throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ApplicationEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ApplicationEventCopyWith<ApplicationEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -61,7 +63,7 @@ abstract class $ApplicationEventCopyWith<$Res> {
           ApplicationEvent value, $Res Function(ApplicationEvent) then) =
       _$ApplicationEventCopyWithImpl<$Res, ApplicationEvent>;
   @useResult
-  $Res call({UserInfoRequest request});
+  $Res call({ApplicationRequestEntity request});
 }
 
 /// @nodoc
@@ -74,6 +76,8 @@ class _$ApplicationEventCopyWithImpl<$Res, $Val extends ApplicationEvent>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ApplicationEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -83,7 +87,7 @@ class _$ApplicationEventCopyWithImpl<$Res, $Val extends ApplicationEvent>
       request: null == request
           ? _value.request
           : request // ignore: cast_nullable_to_non_nullable
-              as UserInfoRequest,
+              as ApplicationRequestEntity,
     ) as $Val);
   }
 }
@@ -96,7 +100,7 @@ abstract class _$$GetUserInfoEventImplCopyWith<$Res>
       __$$GetUserInfoEventImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({UserInfoRequest request});
+  $Res call({ApplicationRequestEntity request});
 }
 
 /// @nodoc
@@ -107,6 +111,8 @@ class __$$GetUserInfoEventImplCopyWithImpl<$Res>
       $Res Function(_$GetUserInfoEventImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ApplicationEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -116,7 +122,7 @@ class __$$GetUserInfoEventImplCopyWithImpl<$Res>
       null == request
           ? _value.request
           : request // ignore: cast_nullable_to_non_nullable
-              as UserInfoRequest,
+              as ApplicationRequestEntity,
     ));
   }
 }
@@ -127,7 +133,7 @@ class _$GetUserInfoEventImpl implements _GetUserInfoEvent {
   const _$GetUserInfoEventImpl(this.request);
 
   @override
-  final UserInfoRequest request;
+  final ApplicationRequestEntity request;
 
   @override
   String toString() {
@@ -145,7 +151,9 @@ class _$GetUserInfoEventImpl implements _GetUserInfoEvent {
   @override
   int get hashCode => Object.hash(runtimeType, request);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ApplicationEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$GetUserInfoEventImplCopyWith<_$GetUserInfoEventImpl> get copyWith =>
@@ -155,7 +163,7 @@ class _$GetUserInfoEventImpl implements _GetUserInfoEvent {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(UserInfoRequest request) getUserInfo,
+    required TResult Function(ApplicationRequestEntity request) getUserInfo,
   }) {
     return getUserInfo(request);
   }
@@ -163,7 +171,7 @@ class _$GetUserInfoEventImpl implements _GetUserInfoEvent {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(UserInfoRequest request)? getUserInfo,
+    TResult? Function(ApplicationRequestEntity request)? getUserInfo,
   }) {
     return getUserInfo?.call(request);
   }
@@ -171,7 +179,7 @@ class _$GetUserInfoEventImpl implements _GetUserInfoEvent {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(UserInfoRequest request)? getUserInfo,
+    TResult Function(ApplicationRequestEntity request)? getUserInfo,
     required TResult orElse(),
   }) {
     if (getUserInfo != null) {
@@ -210,13 +218,16 @@ class _$GetUserInfoEventImpl implements _GetUserInfoEvent {
 }
 
 abstract class _GetUserInfoEvent implements ApplicationEvent {
-  const factory _GetUserInfoEvent(final UserInfoRequest request) =
+  const factory _GetUserInfoEvent(final ApplicationRequestEntity request) =
       _$GetUserInfoEventImpl;
 
   @override
-  UserInfoRequest get request;
+  ApplicationRequestEntity get request;
+
+  /// Create a copy of ApplicationEvent
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$GetUserInfoEventImplCopyWith<_$GetUserInfoEventImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -227,7 +238,9 @@ mixin _$ApplicationState {
   ErrorModel? get error => throw _privateConstructorUsedError;
   PersonModel? get userInfo => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ApplicationState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ApplicationStateCopyWith<ApplicationState> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -251,6 +264,8 @@ class _$ApplicationStateCopyWithImpl<$Res, $Val extends ApplicationState>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ApplicationState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -294,6 +309,8 @@ class __$$ApplicationStateImplCopyWithImpl<$Res>
       $Res Function(_$ApplicationStateImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ApplicationState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -352,7 +369,9 @@ class _$ApplicationStateImpl implements _ApplicationState {
   @override
   int get hashCode => Object.hash(runtimeType, isLoading, error, userInfo);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ApplicationState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ApplicationStateImplCopyWith<_$ApplicationStateImpl> get copyWith =>
@@ -372,8 +391,11 @@ abstract class _ApplicationState implements ApplicationState {
   ErrorModel? get error;
   @override
   PersonModel? get userInfo;
+
+  /// Create a copy of ApplicationState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ApplicationStateImplCopyWith<_$ApplicationStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

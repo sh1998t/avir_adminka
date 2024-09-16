@@ -2,25 +2,25 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'user_response.g.dart';
 
+
+
 @JsonSerializable()
 class PersonModel {
   final Person person;
-  final Document? document;
-  // final Address? address;
-  // final Parent? father;
-  // final Parent? mother;
+  final Document document;
+  final Address? address;
+  // final dynamic father;
+  // final dynamic mother;
 
   PersonModel({
     required this.person,
-    this.document,
-    // this.address,
+    required this.document,
+    required this.address,
     // this.father,
     // this.mother,
   });
 
-  factory PersonModel.fromJson(Map<String, dynamic> json) =>
-      _$PersonModelFromJson(json);
-
+  factory PersonModel.fromJson(Map<String, dynamic> json) => _$PersonModelFromJson(json);
   Map<String, dynamic> toJson() => _$PersonModelToJson(this);
 }
 
@@ -36,16 +36,16 @@ class Person {
   final String patronymLatin;
   final String surnameEnglish;
   final String nameEnglish;
-  final String patronymEnglish;
+  final String? patronymEnglish;
   final String dateBirth;
-  final Code sex;
-  final Code nationality;
-  final Code citizenship;
-  final Code birthCountry;
-  final Code birthRegion;
-  final Code birthDistrict;
+  final Sex sex;
+  final Nationality nationality;
+  final Citizenship citizenship;
+  final BirthCountry birthCountry;
+  final BirthRegion birthRegion;
+  final BirthDistrict birthDistrict;
   final String birthPlaceLatin;
-  final String? birthPlaceEnglish;
+  final String birthPlaceEnglish;
 
   Person({
     required this.guid,
@@ -58,7 +58,7 @@ class Person {
     required this.patronymLatin,
     required this.surnameEnglish,
     required this.nameEnglish,
-    required this.patronymEnglish,
+    this.patronymEnglish,
     required this.dateBirth,
     required this.sex,
     required this.nationality,
@@ -67,40 +67,117 @@ class Person {
     required this.birthRegion,
     required this.birthDistrict,
     required this.birthPlaceLatin,
-    this.birthPlaceEnglish,
+    required this.birthPlaceEnglish,
   });
 
-  factory Person.fromJson(Map<String, dynamic> json) =>
-      _$PersonFromJson(json);
-
+  factory Person.fromJson(Map<String, dynamic> json) => _$PersonFromJson(json);
   Map<String, dynamic> toJson() => _$PersonToJson(this);
 }
 
 @JsonSerializable()
-class Code {
-  final int? id;
-  final String? value;
+class Sex {
+  final int id;
+  final String value;
   final String idValue;
 
-  Code({
-     this.id,
-    this.value,
+  Sex({
+    required this.id,
+    required this.value,
     required this.idValue,
   });
 
-  factory Code.fromJson(Map<String, dynamic> json) => _$CodeFromJson(json);
+  factory Sex.fromJson(Map<String, dynamic> json) => _$SexFromJson(json);
+  Map<String, dynamic> toJson() => _$SexToJson(this);
+}
 
-  Map<String, dynamic> toJson() => _$CodeToJson(this);
+@JsonSerializable()
+class Nationality {
+  final int id;
+  final String value;
+  final String idValue;
+
+  Nationality({
+    required this.id,
+    required this.value,
+    required this.idValue,
+  });
+
+  factory Nationality.fromJson(Map<String, dynamic> json) => _$NationalityFromJson(json);
+  Map<String, dynamic> toJson() => _$NationalityToJson(this);
+}
+
+@JsonSerializable()
+class Citizenship {
+  final int id;
+  final String value;
+  final String idValue;
+
+  Citizenship({
+    required this.id,
+    required this.value,
+    required this.idValue,
+  });
+
+  factory Citizenship.fromJson(Map<String, dynamic> json) => _$CitizenshipFromJson(json);
+  Map<String, dynamic> toJson() => _$CitizenshipToJson(this);
+}
+
+@JsonSerializable()
+class BirthCountry {
+  final int id;
+  final String value;
+  final String idValue;
+
+  BirthCountry({
+    required this.id,
+    required this.value,
+    required this.idValue,
+  });
+
+  factory BirthCountry.fromJson(Map<String, dynamic> json) => _$BirthCountryFromJson(json);
+  Map<String, dynamic> toJson() => _$BirthCountryToJson(this);
+}
+
+@JsonSerializable()
+class BirthRegion {
+  final int id;
+  final String value;
+  final String idValue;
+
+  BirthRegion({
+    required this.id,
+    required this.value,
+    required this.idValue,
+  });
+
+  factory BirthRegion.fromJson(Map<String, dynamic> json) => _$BirthRegionFromJson(json);
+  Map<String, dynamic> toJson() => _$BirthRegionToJson(this);
+}
+
+@JsonSerializable()
+class BirthDistrict {
+  final int id;
+  final String value;
+  final String idValue;
+
+  BirthDistrict({
+    required this.id,
+    required this.value,
+    required this.idValue,
+  });
+
+  factory BirthDistrict.fromJson(Map<String, dynamic> json) => _$BirthDistrictFromJson(json);
+  Map<String, dynamic> toJson() => _$BirthDistrictToJson(this);
 }
 
 @JsonSerializable()
 class Document {
-  final Code documentType;
+  final DocumentTypeModel documentType;
   final String serialNumber;
   final String issuedBy;
   final String dateIssue;
   final String dateValid;
-  final Code documentStatus;
+  final DocumentStatus documentStatus;
 
   Document({
     required this.documentType,
@@ -111,20 +188,104 @@ class Document {
     required this.documentStatus,
   });
 
-  factory Document.fromJson(Map<String, dynamic> json) =>
-      _$DocumentFromJson(json);
-
+  factory Document.fromJson(Map<String, dynamic> json) => _$DocumentFromJson(json);
   Map<String, dynamic> toJson() => _$DocumentToJson(this);
 }
 
-// @JsonSerializable()
-// class Address {
-//   // Define fields similar to the ones used in other classes
-//   // Include a factory and toJson method
-// }
-//
-// @JsonSerializable()
-// class Parent {
-//   // Define fields similar to the ones used in other classes
-//   // Include a factory and toJson method
-// }
+@JsonSerializable()
+class DocumentTypeModel {
+  final int id;
+  final String value;
+  final String idValue;
+
+  DocumentTypeModel({
+    required this.id,
+    required this.value,
+    required this.idValue,
+  });
+
+  factory DocumentTypeModel.fromJson(Map<String, dynamic> json) => _$DocumentTypeModelFromJson(json);
+}
+
+@JsonSerializable()
+class DocumentStatus {
+  final int id;
+  final String value;
+  final String idValue;
+
+  DocumentStatus({
+    required this.id,
+    required this.value,
+    required this.idValue,
+  });
+
+  factory DocumentStatus.fromJson(Map<String, dynamic> json) => _$DocumentStatusFromJson(json);
+  Map<String, dynamic> toJson() => _$DocumentStatusToJson(this);
+}
+
+@JsonSerializable()
+class Address {
+  final String cadastreNumber;
+  final Country country;
+  final Region region;
+  final District district;
+  final String address;
+
+  Address({
+    required this.cadastreNumber,
+    required this.country,
+    required this.region,
+    required this.district,
+    required this.address,
+  });
+
+  factory Address.fromJson(Map<String, dynamic> json) => _$AddressFromJson(json);
+  Map<String, dynamic> toJson() => _$AddressToJson(this);
+}
+
+@JsonSerializable()
+class Country {
+  final int id;
+  final String? value;
+  final String idValue;
+
+  Country({
+    required this.id,
+    this.value,
+    required this.idValue,
+  });
+
+  factory Country.fromJson(Map<String, dynamic> json) => _$CountryFromJson(json);
+  Map<String, dynamic> toJson() => _$CountryToJson(this);
+}
+
+@JsonSerializable()
+class Region {
+  final int id;
+  final String? value;
+  final String idValue;
+
+  Region({
+    required this.id,
+    this.value,
+    required this.idValue,
+  });
+
+  factory Region.fromJson(Map<String, dynamic> json) => _$RegionFromJson(json);
+  Map<String, dynamic> toJson() => _$RegionToJson(this);
+}
+
+@JsonSerializable()
+class District {
+  final int id;
+  final String? value;
+  final String idValue;
+
+  District({
+    required this.id,
+    this.value,
+    required this.idValue,
+  });
+
+  factory District.fromJson(Map<String, dynamic> json) => _$DistrictFromJson(json);
+}

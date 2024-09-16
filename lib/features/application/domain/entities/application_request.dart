@@ -4,7 +4,7 @@ abstract class ApplicationRequestEntity {
   final String? pinpp;
   final bool parents;
   final bool address;
-  final int? documentType;
+  final int? doctype;
 
   ApplicationRequestEntity({
     this.serialNumber,
@@ -12,6 +12,7 @@ abstract class ApplicationRequestEntity {
     this.pinpp,
     required this.parents,
     required this.address,
-    this.documentType,
+    this.doctype,
   });
+  Map<String, dynamic> toJson();
 }

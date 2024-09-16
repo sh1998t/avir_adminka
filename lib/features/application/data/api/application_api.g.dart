@@ -22,7 +22,7 @@ class _ApplicationApi implements ApplicationApi {
   final ParseErrorLogger? errorLogger;
 
   @override
-  Future<PersonModel> getUserInfo(UserInfoRequest request) async {
+  Future<PersonModel> getUserInfo(ApplicationRequestEntity request) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     queryParameters.addAll(request.toJson());

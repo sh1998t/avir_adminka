@@ -3,15 +3,21 @@
   "packages": [
     {
       "name": "_fe_analyzer_shared",
-      "rootUri": "file:///Users/feruzbekabduraximov/.pub-cache/hosted/pub.dev/_fe_analyzer_shared-67.0.0",
+      "rootUri": "file:///Users/feruzbekabduraximov/.pub-cache/hosted/pub.dev/_fe_analyzer_shared-72.0.0",
       "packageUri": "lib/",
-      "languageVersion": "3.0"
+      "languageVersion": "3.3"
+    },
+    {
+      "name": "_macros",
+      "rootUri": "file:///Users/feruzbekabduraximov/Dev/flutter/bin/cache/dart-sdk/pkg/_macros",
+      "packageUri": "lib/",
+      "languageVersion": "3.4"
     },
     {
       "name": "analyzer",
-      "rootUri": "file:///Users/feruzbekabduraximov/.pub-cache/hosted/pub.dev/analyzer-6.4.1",
+      "rootUri": "file:///Users/feruzbekabduraximov/.pub-cache/hosted/pub.dev/analyzer-6.7.0",
       "packageUri": "lib/",
-      "languageVersion": "3.0"
+      "languageVersion": "3.3"
     },
     {
       "name": "args",
@@ -63,15 +69,15 @@
     },
     {
       "name": "build_runner",
-      "rootUri": "file:///Users/feruzbekabduraximov/.pub-cache/hosted/pub.dev/build_runner-2.4.11",
+      "rootUri": "file:///Users/feruzbekabduraximov/.pub-cache/hosted/pub.dev/build_runner-2.4.12",
       "packageUri": "lib/",
-      "languageVersion": "3.4"
+      "languageVersion": "3.5"
     },
     {
       "name": "build_runner_core",
-      "rootUri": "file:///Users/feruzbekabduraximov/.pub-cache/hosted/pub.dev/build_runner_core-7.3.1",
+      "rootUri": "file:///Users/feruzbekabduraximov/.pub-cache/hosted/pub.dev/build_runner_core-7.3.2",
       "packageUri": "lib/",
-      "languageVersion": "3.4"
+      "languageVersion": "3.5"
     },
     {
       "name": "built_collection",
@@ -135,13 +141,13 @@
     },
     {
       "name": "dart_style",
-      "rootUri": "file:///Users/feruzbekabduraximov/.pub-cache/hosted/pub.dev/dart_style-2.3.6",
+      "rootUri": "file:///Users/feruzbekabduraximov/.pub-cache/hosted/pub.dev/dart_style-2.3.7",
       "packageUri": "lib/",
       "languageVersion": "3.0"
     },
     {
       "name": "dio",
-      "rootUri": "file:///Users/feruzbekabduraximov/.pub-cache/hosted/pub.dev/dio-5.6.0",
+      "rootUri": "file:///Users/feruzbekabduraximov/.pub-cache/hosted/pub.dev/dio-5.7.0",
       "packageUri": "lib/",
       "languageVersion": "2.18"
     },
@@ -237,9 +243,9 @@
     },
     {
       "name": "freezed",
-      "rootUri": "file:///Users/feruzbekabduraximov/.pub-cache/hosted/pub.dev/freezed-2.5.2",
+      "rootUri": "file:///Users/feruzbekabduraximov/.pub-cache/hosted/pub.dev/freezed-2.5.7",
       "packageUri": "lib/",
-      "languageVersion": "2.17"
+      "languageVersion": "3.0"
     },
     {
       "name": "freezed_annotation",
@@ -380,6 +386,12 @@
       "languageVersion": "2.19"
     },
     {
+      "name": "macros",
+      "rootUri": "file:///Users/feruzbekabduraximov/.pub-cache/hosted/pub.dev/macros-0.1.2-main.4",
+      "packageUri": "lib/",
+      "languageVersion": "3.4"
+    },
+    {
       "name": "mask_text_input_formatter",
       "rootUri": "file:///Users/feruzbekabduraximov/.pub-cache/hosted/pub.dev/mask_text_input_formatter-2.9.0",
       "packageUri": "lib/",
@@ -405,7 +417,7 @@
     },
     {
       "name": "mime",
-      "rootUri": "file:///Users/feruzbekabduraximov/.pub-cache/hosted/pub.dev/mime-1.0.5",
+      "rootUri": "file:///Users/feruzbekabduraximov/.pub-cache/hosted/pub.dev/mime-1.0.6",
       "packageUri": "lib/",
       "languageVersion": "3.2"
     },
@@ -525,13 +537,13 @@
     },
     {
       "name": "retrofit",
-      "rootUri": "file:///Users/feruzbekabduraximov/.pub-cache/hosted/pub.dev/retrofit-4.2.0",
+      "rootUri": "file:///Users/feruzbekabduraximov/.pub-cache/hosted/pub.dev/retrofit-4.4.1",
       "packageUri": "lib/",
-      "languageVersion": "2.17"
+      "languageVersion": "2.19"
     },
     {
       "name": "retrofit_generator",
-      "rootUri": "file:///Users/feruzbekabduraximov/.pub-cache/hosted/pub.dev/retrofit_generator-8.2.0",
+      "rootUri": "file:///Users/feruzbekabduraximov/.pub-cache/hosted/pub.dev/retrofit_generator-8.2.1",
       "packageUri": "lib/",
       "languageVersion": "2.19"
     },
@@ -543,7 +555,7 @@
     },
     {
       "name": "shared_preferences_android",
-      "rootUri": "file:///Users/feruzbekabduraximov/.pub-cache/hosted/pub.dev/shared_preferences_android-2.3.1",
+      "rootUri": "file:///Users/feruzbekabduraximov/.pub-cache/hosted/pub.dev/shared_preferences_android-2.3.2",
       "packageUri": "lib/",
       "languageVersion": "3.4"
     },
@@ -746,7 +758,7 @@
       "languageVersion": "3.4"
     }
   ],
-  "generated": "2024-09-14T05:46:32.623Z",
+  "generated": "2024-09-14T11:39:06.065918Z",
   "generator": "pub",
   "generatorVersion": "3.5.2",
   "flutterRoot": "file:///Users/feruzbekabduraximov/Dev/flutter",
