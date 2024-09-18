@@ -16,7 +16,7 @@ class AppPreference {
     try {
       await _prefs.setString(PrefKeys.accessToken.key, token);
     } catch (e) {
-      print(e);
+      rethrow;
     }
   }
 

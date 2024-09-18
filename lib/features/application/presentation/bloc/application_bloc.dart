@@ -1,14 +1,11 @@
 import 'dart:async';
 
-import 'package:avir_app/features/application/data/models/user_info_request.dart';
 import 'package:avir_app/features/application/data/models/user_response.dart';
-import 'package:avir_app/features/application/data/repository/application_repository_implentation.dart';
 import 'package:avir_app/features/application/domain/entities/application_request.dart';
 import 'package:avir_app/features/application/domain/repository/application_repository.dart';
 import 'package:avir_app/features/auth/data/model/error_model.dart';
 import 'package:bloc/bloc.dart';
 import 'package:dio/dio.dart';
-import 'package:flutter/services.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
@@ -53,8 +50,7 @@ class ApplicationBloc extends Bloc<ApplicationEvent, ApplicationState> {
         ),
       );
     }
-    catch (e, stack) {
-      print(e);
+    catch (e) {
       emit(
         state.copyWith(
           isLoading: false,

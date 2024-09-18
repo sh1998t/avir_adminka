@@ -48,7 +48,8 @@ dependencies:
   freezed: ^2.5.2
   flutter_bloc: ^8.1.6
   shared_preferences: ^2.3.2
-
+  dotted_border: ^2.1.0
+  printing: ^5.13.2
 
 dev_dependencies:
   flutter_test:

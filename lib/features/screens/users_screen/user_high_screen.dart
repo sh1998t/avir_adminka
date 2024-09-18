@@ -27,11 +27,11 @@ class UserHighScreen extends StatelessWidget {
               padding: const EdgeInsets.all(20),
               child: Column(
                 children: [
-                  SizedBox(
+                  const SizedBox(
                     height: 50,
                   ),
                   Text("user".tr()),
-                  Row(
+                  const Row(
                     children: [
                       ShowDialogWidget(
                         heigths: 350,
@@ -42,7 +42,7 @@ class UserHighScreen extends StatelessWidget {
                           children: [
                             Padding(
                               padding:
-                                  const EdgeInsets.only(left: 30, right: 30),
+                                  EdgeInsets.only(left: 30, right: 30),
                               child: MainTextField(
                                 title: 'hello',
                                 height: 40,
@@ -51,7 +51,7 @@ class UserHighScreen extends StatelessWidget {
                             ),
                             Padding(
                               padding:
-                                  const EdgeInsets.only(left: 30, right: 30),
+                                  EdgeInsets.only(left: 30, right: 30),
                               child: MainTextField(
                                 title: 'hello',
                                 height: 40,
@@ -61,7 +61,7 @@ class UserHighScreen extends StatelessWidget {
                             ),
                             Padding(
                               padding:
-                                  const EdgeInsets.only(left: 30, right: 30),
+                                  EdgeInsets.only(left: 30, right: 30),
                               child: MainTextField(
                                 title: 'hello',
                                 height: 40,
@@ -70,7 +70,7 @@ class UserHighScreen extends StatelessWidget {
                             ),
                             Padding(
                               padding:
-                                  const EdgeInsets.only(left: 30, right: 30),
+                                  EdgeInsets.only(left: 30, right: 30),
                               child: MainTextField(
                                 title: 'hello',
                                 height: 40,

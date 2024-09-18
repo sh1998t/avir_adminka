@@ -35,11 +35,11 @@ class DataTableWidget extends StatelessWidget {
               child: Center(
                 child: Text(
                   number ?? '',
-                  style: TextStyle(fontSize: 16, color: Colors.black),
+                  style: const TextStyle(fontSize: 16, color: Colors.black),
                 ),
               ),
             ),
-            VerticalDivider(
+            const VerticalDivider(
               color: Colors.black38,
               width: 1,
             ),
@@ -48,11 +48,11 @@ class DataTableWidget extends StatelessWidget {
               child: Center(
                 child: Text(
                   title ?? '',
-                  style: TextStyle(fontSize: 16, color: Colors.black),
+                  style: const TextStyle(fontSize: 16, color: Colors.black),
                 ),
               ),
             ),
-            VerticalDivider(
+            const VerticalDivider(
               color: Colors.black38,
               width: 1,
             ),
@@ -61,11 +61,11 @@ class DataTableWidget extends StatelessWidget {
               child: Center(
                 child: Text(
                   title1 ?? '',
-                  style: TextStyle(fontSize: 16, color: Colors.black),
+                  style: const TextStyle(fontSize: 16, color: Colors.black),
                 ),
               ),
             ),
-            VerticalDivider(
+            const VerticalDivider(
               color: Colors.black38,
               width: 1,
             ),
@@ -74,11 +74,11 @@ class DataTableWidget extends StatelessWidget {
               child: Center(
                 child: Text(
                   title2 ?? '',
-                  style: TextStyle(fontSize: 16, color: Colors.black),
+                  style: const TextStyle(fontSize: 16, color: Colors.black),
                 ),
               ),
             ),
-            VerticalDivider(
+            const VerticalDivider(
               color: Colors.black38,
               width: 1,
             ),
@@ -87,11 +87,11 @@ class DataTableWidget extends StatelessWidget {
               child: Center(
                 child: Text(
                   title3 ?? '',
-                  style: TextStyle(fontSize: 16, color: Colors.black),
+                  style: const TextStyle(fontSize: 16, color: Colors.black),
                 ),
               ),
             ),
-            VerticalDivider(
+            const VerticalDivider(
               color: Colors.black38,
               width: 1,
             ),
@@ -100,11 +100,11 @@ class DataTableWidget extends StatelessWidget {
               child: Center(
                 child: Text(
                   title4 ?? '',
-                  style: TextStyle(fontSize: 16, color: Colors.black),
+                  style: const TextStyle(fontSize: 16, color: Colors.black),
                 ),
               ),
             ),
-            VerticalDivider(
+            const VerticalDivider(
               color: Colors.black38,
               width: 1,
             ),
@@ -113,7 +113,7 @@ class DataTableWidget extends StatelessWidget {
               child: Center(
                 child: Text(
                   title5 ?? '',
-                  style: TextStyle(fontSize: 16, color: Colors.black),
+                  style: const TextStyle(fontSize: 16, color: Colors.black),
                 ),
               ),
             ),

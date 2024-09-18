@@ -1,4 +1,3 @@
-import 'package:avir_app/core/constants/app_constants.dart';
 import 'package:avir_app/core/utils/shadows/shadows.dart';
 import 'package:flutter/material.dart';
 

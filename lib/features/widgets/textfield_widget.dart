@@ -72,18 +72,18 @@ class MainTextField extends StatelessWidget {
               prefixIcon: prefix,
               fillColor: AppColors.textFieldBack,
               hintText: hintText,
-              hintStyle: TextStyle(
+              hintStyle: const TextStyle(
                   fontSize: 14,
                   color: AppColors.hintText,
                   fontWeight: FontWeight.w500),
               filled: true,
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(8),
-                borderSide: BorderSide(color: AppColors.white, width: 1),
+                borderSide: const BorderSide(color: AppColors.white, width: 1),
               ),
               enabledBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(8),
-                borderSide: BorderSide(color: AppColors.white, width: 1),
+                borderSide: const BorderSide(color: AppColors.white, width: 1),
               ),
             ),
           ),

@@ -12,16 +12,12 @@ class CommonRequestInterceptor extends QueuedInterceptor {
 
   final Dio _dio;
 
-  Map<String, String> get _baseHeaders => {
-        'Content-Type': 'application/json',
-      };
 
   @override
   Future onRequest(
     RequestOptions options,
     RequestInterceptorHandler handler,
   ) async {
-    print(options.data);
     return super.onRequest(options, handler);
   }
 
@@ -54,16 +50,15 @@ class AuthorizedRequestInterceptor extends CommonRequestInterceptor {
     RequestOptions options,
     RequestInterceptorHandler handler,
   ) async {
-    print(options.data);
     try {
       if (_token?.isNotEmpty ?? false) {
-        options.headers[HttpHeaders.authorizationHeader] = 'Bearer ${_token}';
+        options.headers[HttpHeaders.authorizationHeader] = 'Bearer $_token';
       }
       return super.onRequest(options, handler);
     } on DioException catch (e) {
       handler.reject(e, true);
     } on Object catch (e) {
-      print(e);
+      rethrow;
     }
   }
 

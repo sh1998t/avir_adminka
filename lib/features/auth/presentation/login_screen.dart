@@ -118,7 +118,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     hintText: "login".tr(),
                     controller: _loginController,
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 16,
                   ),
                   MainTextField(
@@ -127,7 +127,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     hintText: "password".tr(),
                     controller: _passwordController,
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 22,
                   ),
                   BlocConsumer<AuthBloc, AuthState>(

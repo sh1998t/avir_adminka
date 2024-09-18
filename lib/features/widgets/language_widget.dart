@@ -29,7 +29,7 @@ class _LanguageWidgetState extends State<LanguageWidget> {
           LanguageButton(
             title: 'ru',
             onPressed: () {
-              context.setLocale(Locale('ru'));
+              context.setLocale(const Locale('ru'));
             setState(() {
 
             });
@@ -41,7 +41,7 @@ class _LanguageWidgetState extends State<LanguageWidget> {
           LanguageButton(
             title: 'uz',
             onPressed: () {
-              context.setLocale(Locale('uz'),);
+              context.setLocale(const Locale('uz'),);
               setState(() {
 
               });
@@ -53,7 +53,7 @@ class _LanguageWidgetState extends State<LanguageWidget> {
           LanguageButton(
             title: 'qr',
             onPressed: () {
-              context.setLocale(Locale('qr'));
+              context.setLocale(const Locale('qr'));
             },
           ),
         ],

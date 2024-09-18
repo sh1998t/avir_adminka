@@ -1,4 +1,5 @@
 import 'package:avir_app/core/theme/colors.dart';
+import 'package:avir_app/features/active_application/active_screen.dart';
 import 'package:avir_app/features/application/presentation/widgets/application_button.dart';
 import 'package:avir_app/features/application/presentation/widgets/application_widget.dart';
 import 'package:avir_app/features/history/history_widget.dart';
@@ -6,7 +7,6 @@ import 'package:avir_app/features/widgets/main_appbar.dart';
 import 'package:avir_app/features/widgets/main_container.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 class HomeScreen extends StatefulWidget {
   static const String name = 'home-screen';
@@ -21,7 +21,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   int index = 2;
   List<Widget> widgets = [
-    Container(),
+    const ActiveScreen(),
     const HistoryWidget(),
     const ApplicationWidget(),
   ];

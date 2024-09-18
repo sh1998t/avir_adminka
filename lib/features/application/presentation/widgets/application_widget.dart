@@ -1,6 +1,10 @@
+import 'package:avir_app/core/constants/moc_data.dart';
+import 'package:avir_app/core/enums/id_cart_type.dart';
 import 'package:avir_app/core/enums/pref_keys.dart';
+import 'package:avir_app/core/service/pdf_service.dart';
 import 'package:avir_app/core/theme/colors.dart';
 import 'package:avir_app/core/utils/formatters/uppercase_formatter.dart';
+import 'package:avir_app/features/application/data/models/invoice_model.dart';
 import 'package:avir_app/features/application/data/models/user_info_request.dart';
 import 'package:avir_app/features/application/data/models/user_response.dart';
 import 'package:avir_app/features/application/presentation/bloc/application_bloc.dart';
@@ -15,6 +19,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
+
+
+
 
 class ApplicationWidget extends StatefulWidget {
   const ApplicationWidget({super.key});
@@ -39,6 +46,7 @@ class _ApplicationWidgetState extends State<ApplicationWidget> {
 
   final List<DocumentType> types = [DocumentType.id, DocumentType.passport];
   int currentStep = 0;
+  IdCartEnum _selectedIdCartType = IdCartEnum.idCard;
 
   @override
   void initState() {
@@ -75,10 +83,16 @@ class _ApplicationWidgetState extends State<ApplicationWidget> {
           final PersonModel? user = state.userInfo;
           return Column(
             children: [
-               StepsWidget(step: currentStep,),
+              StepsWidget(
+                step: currentStep,
+              ),
               const SizedBox(
                 height: 22,
               ),
+              MainOutlineButton(isActive: true, title: 'Print', onPressed: (){
+                final InvoiceResponse response = InvoiceResponse.fromJson(MockData.paymentData);
+                PdfService().printCustomersPdf(response);
+              }),
               Expanded(
                 child: PageView(
                   children: [
@@ -119,46 +133,6 @@ class _ApplicationWidgetState extends State<ApplicationWidget> {
                             ),
                             const SizedBox(
                               height: 22,
-                            ),
-                            Visibility(
-                              visible: isMethod1,
-                              child: Container(
-                                padding: const EdgeInsets.all(12),
-                                decoration: BoxDecoration(
-                                  color: AppColors.textFieldBack,
-                                  borderRadius: BorderRadius.circular(4),
-                                ),
-                                height: 46,
-                                width: size.width * 0.65,
-                                child: DropdownButton<DocumentType>(
-                                  borderRadius: BorderRadius.circular(4),
-                                  isExpanded: true,
-                                  value: _documentType,
-                                  elevation: 16,
-                                  style: const TextStyle(color: Colors.deepPurple),
-                                  underline: const SizedBox.shrink(),
-                                  onChanged: (DocumentType? value) {
-                                    // This is called when the user selects an item.
-                                    setState(() {
-                                      _documentType = value!;
-                                    });
-                                  },
-                                  items: types.map<DropdownMenuItem<DocumentType>>(
-                                      (DocumentType value) {
-                                    return DropdownMenuItem<DocumentType>(
-                                      value: value,
-                                      child: Text(
-                                        (value.key['key'] as String).tr(),
-                                        style:
-                                            Theme.of(context).textTheme.bodyMedium,
-                                      ),
-                                    );
-                                  }).toList(),
-                                ),
-                              ),
-                            ),
-                            const SizedBox(
-                              height: 24,
                             ),
                             Row(
                               crossAxisAlignment: CrossAxisAlignment.center,
@@ -256,7 +230,8 @@ class _ApplicationWidgetState extends State<ApplicationWidget> {
                                                 inputFormatters: [
                                                   dateOfBirthFormatter
                                                 ],
-                                                controller: _dateOfBirthController,
+                                                controller:
+                                                    _dateOfBirthController,
                                                 hintText: 'dd.mm.yyyy',
                                                 width: 202,
                                                 height: 46,
@@ -275,7 +250,8 @@ class _ApplicationWidgetState extends State<ApplicationWidget> {
                                                 .textTheme
                                                 .bodyMedium
                                                 ?.copyWith(
-                                                    fontWeight: FontWeight.w500),
+                                                    fontWeight:
+                                                        FontWeight.w500),
                                           ),
                                           MainTextField(
                                             controller: _pinppController,
@@ -285,7 +261,8 @@ class _ApplicationWidgetState extends State<ApplicationWidget> {
                                             maxLength: 14,
                                             onchange: (value) {
                                               if (value.length == 14) {
-                                                FocusScope.of(context).nextFocus();
+                                                FocusScope.of(context)
+                                                    .nextFocus();
                                               }
                                             },
                                           )
@@ -302,13 +279,15 @@ class _ApplicationWidgetState extends State<ApplicationWidget> {
                                       style: Theme.of(context)
                                           .textTheme
                                           .bodyMedium
-                                          ?.copyWith(fontWeight: FontWeight.w500),
+                                          ?.copyWith(
+                                              fontWeight: FontWeight.w500),
                                     ),
                                     const SizedBox(
                                       width: 20,
                                     ),
                                     Switch(
-                                      inactiveThumbColor: AppColors.unselectedColor,
+                                      inactiveThumbColor:
+                                          AppColors.unselectedColor,
                                       trackOutlineColor:
                                           WidgetStateProperty.resolveWith(
                                         (final Set<WidgetState> states) {
@@ -336,13 +315,15 @@ class _ApplicationWidgetState extends State<ApplicationWidget> {
                                       style: Theme.of(context)
                                           .textTheme
                                           .bodyMedium
-                                          ?.copyWith(fontWeight: FontWeight.w500),
+                                          ?.copyWith(
+                                              fontWeight: FontWeight.w500),
                                     ),
                                     const SizedBox(
                                       width: 20,
                                     ),
                                     Switch(
-                                      inactiveThumbColor: AppColors.unselectedColor,
+                                      inactiveThumbColor:
+                                          AppColors.unselectedColor,
                                       trackOutlineColor:
                                           WidgetStateProperty.resolveWith(
                                         (final Set<WidgetState> states) {
@@ -369,159 +350,216 @@ class _ApplicationWidgetState extends State<ApplicationWidget> {
                             const SizedBox(
                               height: 22,
                             ),
-
                             const SizedBox(
                               height: 22,
                             ),
-
                             Visibility(
                               visible: user != null,
-                              child: Column(children: [
-                                const Divider(
-                                  color: AppColors.divider,
-                                  thickness: 3,
-                                ),
-                                const SizedBox(
-                                  height: 22,
-                                ),
-                                Row(
-                                  children: [
-                                    InfoWidget(
-                                      width: 312,
-                                      title: 'GUID',
-                                      value: user?.person.guid ?? "",
-                                    ),
-                                    const SizedBox(
-                                      width: 22,
-                                    ),
-                                    InfoWidget(
-                                      title: 'pinfl'.tr(),
-                                      value: user?.person.pinpp ?? "",
-                                      width: 151,
-                                    )
-                                  ],
-                                ),
-                                const SizedBox(
-                                  height: 22,
-                                ),
-                                Row(
-                                  children: [
-                                    InfoWidgetTwo(
-                                      height: 117,
-                                      width: 335,
-                                      title: 'name'.tr(),
-                                      value: user?.person.nameCirillic ?? "",
-                                      valueTwo: user?.person.nameLatin ?? "",
-                                      valueThree: user?.person.nameEnglish ?? "",
-                                    ),
-                                    const SizedBox(width: 10),
-                                    InfoWidgetTwo(
-                                      height: 117,
-                                      width: 335,
-                                      title: 'surname'.tr(),
-                                      value: user?.person.patronymCirillic ?? "",
-                                      valueTwo: user?.person.patronymLatin ?? "",
-                                      valueThree: user?.person.patronymEnglish ?? "",
-                                    ),
-                                    const SizedBox(width: 10),
-                                  ],
-                                ),
-                                const SizedBox(
-                                  height: 22,
-                                ),
-                                Row(
-                                  children: [
-                                    InfoWidget(
-                                      width: 251,
-                                      title: 'date_of_birth'.tr(),
-                                      value: user?.person.dateBirth ?? "",
-                                    ),
-                                    const SizedBox(
-                                      width: 22,
-                                    ),
-                                    InfoWidget(
-                                      title: 'gender'.tr(),
-                                      value: user?.person.sex.value ?? "",
-                                      width: 130,
-                                    ),
-                                    const SizedBox(
-                                      width: 22,
-                                    ),
-                                    InfoWidget(
-                                      title: 'nationality'.tr(),
-                                      value: user?.person.nationality.value ?? " ",
-                                      width: 130,
-                                    ),
-                                    const SizedBox(
-                                      width: 22,
-                                    ),
-                                    InfoWidget(
-                                      title: 'citizenship'.tr(),
-                                      value: user?.person.citizenship.value ?? "",
-                                      width: 472,
-                                    ),
-                                  ],
-                                ),
-                                const SizedBox(
-                                  height: 22,
-                                ),
-                                Row(
-                                  children: [
-                                    InfoWidget(
-                                      width: 335,
-                                      title: 'birth_territory'.tr(),
-                                      value: user?.person.birthRegion.value ?? "",
-                                    ),
-                                    SizedBox(
-                                      width: 22,
-                                    ),
-                                    InfoWidget(
-                                      width: 335,
-                                      title: 'birth_region'.tr(),
-                                      value: user?.person.birthRegion.value ?? "",
-                                    ),
-                                    SizedBox(
-                                      width: 22,
-                                    ),
-                                    InfoWidget(
-                                      width: 335,
-                                      title: 'birth_district'.tr(),
-                                      value: user?.person.birthDistrict.value ?? "",
-                                    ),
-                                  ],
-                                ),
-                              ],),
+                              child: Column(
+                                children: [
+                                  const Divider(
+                                    color: AppColors.divider,
+                                    thickness: 3,
+                                  ),
+                                  const SizedBox(
+                                    height: 22,
+                                  ),
+                                  Row(
+                                    children: [
+                                      InfoWidget(
+                                        width: 312,
+                                        title: 'GUID',
+                                        value: user?.person.guid ?? "",
+                                      ),
+                                      const SizedBox(
+                                        width: 22,
+                                      ),
+                                      InfoWidget(
+                                        title: 'pinfl'.tr(),
+                                        value: user?.person.pinpp ?? "",
+                                        width: 151,
+                                      )
+                                    ],
+                                  ),
+                                  const SizedBox(
+                                    height: 22,
+                                  ),
+                                  Row(
+                                    children: [
+                                      InfoWidgetTwo(
+                                        height: 117,
+                                        width: 335,
+                                        title: 'name'.tr(),
+                                        value: user?.person.nameCirillic ?? "",
+                                        valueTwo: user?.person.nameLatin ?? "",
+                                        valueThree:
+                                            user?.person.nameEnglish ?? "",
+                                      ),
+                                      const SizedBox(width: 10),
+                                      InfoWidgetTwo(
+                                        height: 117,
+                                        width: 335,
+                                        title: 'surname'.tr(),
+                                        value:
+                                            user?.person.patronymCirillic ?? "",
+                                        valueTwo:
+                                            user?.person.patronymLatin ?? "",
+                                        valueThree:
+                                            user?.person.patronymEnglish ?? "",
+                                      ),
+                                      const SizedBox(width: 10),
+                                    ],
+                                  ),
+                                  const SizedBox(
+                                    height: 22,
+                                  ),
+                                  Row(
+                                    children: [
+                                      InfoWidget(
+                                        width: 251,
+                                        title: 'date_of_birth'.tr(),
+                                        value: user?.person.dateBirth ?? "",
+                                      ),
+                                      const SizedBox(
+                                        width: 22,
+                                      ),
+                                      InfoWidget(
+                                        title: 'gender'.tr(),
+                                        value: user?.person.sex.value ?? "",
+                                        width: 130,
+                                      ),
+                                      const SizedBox(
+                                        width: 22,
+                                      ),
+                                      InfoWidget(
+                                        title: 'nationality'.tr(),
+                                        value: user?.person.nationality.value ??
+                                            " ",
+                                        width: 130,
+                                      ),
+                                      const SizedBox(
+                                        width: 22,
+                                      ),
+                                      InfoWidget(
+                                        title: 'citizenship'.tr(),
+                                        value: user?.person.citizenship.value ??
+                                            "",
+                                        width: 472,
+                                      ),
+                                    ],
+                                  ),
+                                  const SizedBox(
+                                    height: 22,
+                                  ),
+                                  Row(
+                                    children: [
+                                      InfoWidget(
+                                        width: 335,
+                                        title: 'birth_territory'.tr(),
+                                        value: user?.person.birthRegion.value ??
+                                            "",
+                                      ),
+                                      const SizedBox(
+                                        width: 22,
+                                      ),
+                                      InfoWidget(
+                                        width: 335,
+                                        title: 'birth_region'.tr(),
+                                        value: user?.person.birthRegion.value ??
+                                            "",
+                                      ),
+                                      const SizedBox(
+                                        width: 22,
+                                      ),
+                                      InfoWidget(
+                                        width: 335,
+                                        title: 'birth_district'.tr(),
+                                        value:
+                                            user?.person.birthDistrict.value ??
+                                                "",
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
                             ),
-                            SizedBox(height: 20,),
+                            const SizedBox(height: 20,),
+                            Visibility(
+                              visible: user != null,
+                              child: Container(
+                                padding: const EdgeInsets.all(12),
+                                decoration: BoxDecoration(
+                                  color: AppColors.textFieldBack,
+                                  borderRadius: BorderRadius.circular(4),
+                                ),
+                                height: 46,
+                                width: size.width * 0.65,
+                                child: DropdownButton<IdCartEnum>(
+                                  borderRadius: BorderRadius.circular(4),
+                                  isExpanded: true,
+                                  value: _selectedIdCartType,
+                                  elevation: 16,
+                                  style:
+                                  const TextStyle(color: Colors.deepPurple),
+                                  underline: const SizedBox.shrink(),
+                                  onChanged: (IdCartEnum? value) {
+                                    // This is called when the user selects an item.
+                                    setState(() {
+                                      _selectedIdCartType = value!;
+                                    });
+                                  },
+                                  items: IdCartEnum.values
+                                      .map<DropdownMenuItem<IdCartEnum>>(
+                                          (IdCartEnum value) {
+                                        return DropdownMenuItem<IdCartEnum>(
+                                          value: value,
+                                          child: Text(
+                                            (value.key['name'] as String).tr(),
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .bodyMedium,
+                                          ),
+                                        );
+                                      }).toList(),
+                                ),
+                              ),
+                            ),
+                            const SizedBox(
+                              height: 20,
+                            ),
                             MyButton(
                               isLoading: state.isLoading,
-                              text: user == null ? 'check'.tr(): 'create_application'.tr(),
+                              text: user == null
+                                  ? 'check'.tr()
+                                  : 'create_application'.tr(),
                               onPressed: () {
                                 context.read<ApplicationBloc>().add(
-                                  ApplicationEvent.getUserInfo(
-                                    isMethod1
-                                        ? UserInfoRequest(
-                                      serialNumber:
-                                      "${_passSeriesController.text}${_passNumberController.text}",
-                                      parents: _parents,
-                                      address: _address,
-                                      doctype: _documentType.key["id"],
-                                      dateBirth:
-                                      _dateOfBirthController.text,
+                                      ApplicationEvent.getUserInfo(
+                                        isMethod1
+                                            ? UserInfoRequest(
+                                                serialNumber:
+                                                    "${_passSeriesController.text}${_passNumberController.text}",
+                                                parents: _parents,
+                                                address: _address,
+                                                doctype:
+                                                    _documentType.key["id"],
+                                                dateBirth:
+                                                    _dateOfBirthController.text,
 
-                                      // dateBirth: _dateOfBirthController.text,
-                                    )
-                                        : UserInfoWithUUIDRequest(
-                                        parents: _parents,
-                                        address: _address,
-                                        pinpp: _pinppController.text),
-                                  ),
-                                );
+                                                // dateBirth: _dateOfBirthController.text,
+                                              )
+                                            : UserInfoWithUUIDRequest(
+                                                parents: _parents,
+                                                address: _address,
+                                                pinpp: _pinppController.text),
+                                      ),
+                                    );
                               },
                               width: double.infinity,
                               height: 58,
                               textColor: Colors.white,
                             ),
+                            const SizedBox(height: 20,)
                           ],
                         ),
                       ),
@@ -535,8 +573,6 @@ class _ApplicationWidgetState extends State<ApplicationWidget> {
       ),
     );
   }
+
+
 }
-
-
-
-

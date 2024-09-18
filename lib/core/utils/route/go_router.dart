@@ -11,8 +11,8 @@ import 'package:go_router/go_router.dart';
 class AppRouter {
   static final router = GoRouter(
     initialLocation: _getInitialRoute(),
-    redirect: (context, state) async {
-      final AppPreference preference = inject();
+    redirect: (context, state)  async{
+      final AppPreference preference =  inject();
 
       if (!preference.hasToken) {
         return LoginScreen.path;
