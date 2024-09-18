@@ -16,44 +16,44 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$ApplicationEvent {
-  ApplicationRequestEntity get request => throw _privateConstructorUsedError;
+  Object get request => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(ApplicationRequestEntity request) getUserInfo,
+    required TResult Function(UserInfoRequestEntity request) getUserInfo,
+    required TResult Function(ApplicationRequest request) createApplication,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(ApplicationRequestEntity request)? getUserInfo,
+    TResult? Function(UserInfoRequestEntity request)? getUserInfo,
+    TResult? Function(ApplicationRequest request)? createApplication,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(ApplicationRequestEntity request)? getUserInfo,
+    TResult Function(UserInfoRequestEntity request)? getUserInfo,
+    TResult Function(ApplicationRequest request)? createApplication,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_GetUserInfoEvent value) getUserInfo,
+    required TResult Function(_CreateApplication value) createApplication,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_GetUserInfoEvent value)? getUserInfo,
+    TResult? Function(_CreateApplication value)? createApplication,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_GetUserInfoEvent value)? getUserInfo,
+    TResult Function(_CreateApplication value)? createApplication,
     required TResult orElse(),
   }) =>
-      throw _privateConstructorUsedError;
-
-  /// Create a copy of ApplicationEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $ApplicationEventCopyWith<ApplicationEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -62,8 +62,6 @@ abstract class $ApplicationEventCopyWith<$Res> {
   factory $ApplicationEventCopyWith(
           ApplicationEvent value, $Res Function(ApplicationEvent) then) =
       _$ApplicationEventCopyWithImpl<$Res, ApplicationEvent>;
-  @useResult
-  $Res call({ApplicationRequestEntity request});
 }
 
 /// @nodoc
@@ -78,29 +76,15 @@ class _$ApplicationEventCopyWithImpl<$Res, $Val extends ApplicationEvent>
 
   /// Create a copy of ApplicationEvent
   /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? request = null,
-  }) {
-    return _then(_value.copyWith(
-      request: null == request
-          ? _value.request
-          : request // ignore: cast_nullable_to_non_nullable
-              as ApplicationRequestEntity,
-    ) as $Val);
-  }
 }
 
 /// @nodoc
-abstract class _$$GetUserInfoEventImplCopyWith<$Res>
-    implements $ApplicationEventCopyWith<$Res> {
+abstract class _$$GetUserInfoEventImplCopyWith<$Res> {
   factory _$$GetUserInfoEventImplCopyWith(_$GetUserInfoEventImpl value,
           $Res Function(_$GetUserInfoEventImpl) then) =
       __$$GetUserInfoEventImplCopyWithImpl<$Res>;
-  @override
   @useResult
-  $Res call({ApplicationRequestEntity request});
+  $Res call({UserInfoRequestEntity request});
 }
 
 /// @nodoc
@@ -122,7 +106,7 @@ class __$$GetUserInfoEventImplCopyWithImpl<$Res>
       null == request
           ? _value.request
           : request // ignore: cast_nullable_to_non_nullable
-              as ApplicationRequestEntity,
+              as UserInfoRequestEntity,
     ));
   }
 }
@@ -133,7 +117,7 @@ class _$GetUserInfoEventImpl implements _GetUserInfoEvent {
   const _$GetUserInfoEventImpl(this.request);
 
   @override
-  final ApplicationRequestEntity request;
+  final UserInfoRequestEntity request;
 
   @override
   String toString() {
@@ -163,7 +147,8 @@ class _$GetUserInfoEventImpl implements _GetUserInfoEvent {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(ApplicationRequestEntity request) getUserInfo,
+    required TResult Function(UserInfoRequestEntity request) getUserInfo,
+    required TResult Function(ApplicationRequest request) createApplication,
   }) {
     return getUserInfo(request);
   }
@@ -171,7 +156,8 @@ class _$GetUserInfoEventImpl implements _GetUserInfoEvent {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(ApplicationRequestEntity request)? getUserInfo,
+    TResult? Function(UserInfoRequestEntity request)? getUserInfo,
+    TResult? Function(ApplicationRequest request)? createApplication,
   }) {
     return getUserInfo?.call(request);
   }
@@ -179,7 +165,8 @@ class _$GetUserInfoEventImpl implements _GetUserInfoEvent {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(ApplicationRequestEntity request)? getUserInfo,
+    TResult Function(UserInfoRequestEntity request)? getUserInfo,
+    TResult Function(ApplicationRequest request)? createApplication,
     required TResult orElse(),
   }) {
     if (getUserInfo != null) {
@@ -192,6 +179,7 @@ class _$GetUserInfoEventImpl implements _GetUserInfoEvent {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_GetUserInfoEvent value) getUserInfo,
+    required TResult Function(_CreateApplication value) createApplication,
   }) {
     return getUserInfo(this);
   }
@@ -200,6 +188,7 @@ class _$GetUserInfoEventImpl implements _GetUserInfoEvent {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_GetUserInfoEvent value)? getUserInfo,
+    TResult? Function(_CreateApplication value)? createApplication,
   }) {
     return getUserInfo?.call(this);
   }
@@ -208,6 +197,7 @@ class _$GetUserInfoEventImpl implements _GetUserInfoEvent {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_GetUserInfoEvent value)? getUserInfo,
+    TResult Function(_CreateApplication value)? createApplication,
     required TResult orElse(),
   }) {
     if (getUserInfo != null) {
@@ -218,17 +208,159 @@ class _$GetUserInfoEventImpl implements _GetUserInfoEvent {
 }
 
 abstract class _GetUserInfoEvent implements ApplicationEvent {
-  const factory _GetUserInfoEvent(final ApplicationRequestEntity request) =
+  const factory _GetUserInfoEvent(final UserInfoRequestEntity request) =
       _$GetUserInfoEventImpl;
 
   @override
-  ApplicationRequestEntity get request;
+  UserInfoRequestEntity get request;
 
   /// Create a copy of ApplicationEvent
   /// with the given fields replaced by the non-null parameter values.
-  @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$GetUserInfoEventImplCopyWith<_$GetUserInfoEventImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$CreateApplicationImplCopyWith<$Res> {
+  factory _$$CreateApplicationImplCopyWith(_$CreateApplicationImpl value,
+          $Res Function(_$CreateApplicationImpl) then) =
+      __$$CreateApplicationImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({ApplicationRequest request});
+}
+
+/// @nodoc
+class __$$CreateApplicationImplCopyWithImpl<$Res>
+    extends _$ApplicationEventCopyWithImpl<$Res, _$CreateApplicationImpl>
+    implements _$$CreateApplicationImplCopyWith<$Res> {
+  __$$CreateApplicationImplCopyWithImpl(_$CreateApplicationImpl _value,
+      $Res Function(_$CreateApplicationImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of ApplicationEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? request = null,
+  }) {
+    return _then(_$CreateApplicationImpl(
+      null == request
+          ? _value.request
+          : request // ignore: cast_nullable_to_non_nullable
+              as ApplicationRequest,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$CreateApplicationImpl implements _CreateApplication {
+  const _$CreateApplicationImpl(this.request);
+
+  @override
+  final ApplicationRequest request;
+
+  @override
+  String toString() {
+    return 'ApplicationEvent.createApplication(request: $request)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$CreateApplicationImpl &&
+            (identical(other.request, request) || other.request == request));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, request);
+
+  /// Create a copy of ApplicationEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$CreateApplicationImplCopyWith<_$CreateApplicationImpl> get copyWith =>
+      __$$CreateApplicationImplCopyWithImpl<_$CreateApplicationImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(UserInfoRequestEntity request) getUserInfo,
+    required TResult Function(ApplicationRequest request) createApplication,
+  }) {
+    return createApplication(request);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(UserInfoRequestEntity request)? getUserInfo,
+    TResult? Function(ApplicationRequest request)? createApplication,
+  }) {
+    return createApplication?.call(request);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(UserInfoRequestEntity request)? getUserInfo,
+    TResult Function(ApplicationRequest request)? createApplication,
+    required TResult orElse(),
+  }) {
+    if (createApplication != null) {
+      return createApplication(request);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_GetUserInfoEvent value) getUserInfo,
+    required TResult Function(_CreateApplication value) createApplication,
+  }) {
+    return createApplication(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_GetUserInfoEvent value)? getUserInfo,
+    TResult? Function(_CreateApplication value)? createApplication,
+  }) {
+    return createApplication?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_GetUserInfoEvent value)? getUserInfo,
+    TResult Function(_CreateApplication value)? createApplication,
+    required TResult orElse(),
+  }) {
+    if (createApplication != null) {
+      return createApplication(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _CreateApplication implements ApplicationEvent {
+  const factory _CreateApplication(final ApplicationRequest request) =
+      _$CreateApplicationImpl;
+
+  @override
+  ApplicationRequest get request;
+
+  /// Create a copy of ApplicationEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$CreateApplicationImplCopyWith<_$CreateApplicationImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -237,6 +369,7 @@ mixin _$ApplicationState {
   bool get isLoading => throw _privateConstructorUsedError;
   ErrorModel? get error => throw _privateConstructorUsedError;
   PersonModel? get userInfo => throw _privateConstructorUsedError;
+  InvoiceResponse? get invoiceResponse => throw _privateConstructorUsedError;
 
   /// Create a copy of ApplicationState
   /// with the given fields replaced by the non-null parameter values.
@@ -251,7 +384,11 @@ abstract class $ApplicationStateCopyWith<$Res> {
           ApplicationState value, $Res Function(ApplicationState) then) =
       _$ApplicationStateCopyWithImpl<$Res, ApplicationState>;
   @useResult
-  $Res call({bool isLoading, ErrorModel? error, PersonModel? userInfo});
+  $Res call(
+      {bool isLoading,
+      ErrorModel? error,
+      PersonModel? userInfo,
+      InvoiceResponse? invoiceResponse});
 }
 
 /// @nodoc
@@ -272,6 +409,7 @@ class _$ApplicationStateCopyWithImpl<$Res, $Val extends ApplicationState>
     Object? isLoading = null,
     Object? error = freezed,
     Object? userInfo = freezed,
+    Object? invoiceResponse = freezed,
   }) {
     return _then(_value.copyWith(
       isLoading: null == isLoading
@@ -286,6 +424,10 @@ class _$ApplicationStateCopyWithImpl<$Res, $Val extends ApplicationState>
           ? _value.userInfo
           : userInfo // ignore: cast_nullable_to_non_nullable
               as PersonModel?,
+      invoiceResponse: freezed == invoiceResponse
+          ? _value.invoiceResponse
+          : invoiceResponse // ignore: cast_nullable_to_non_nullable
+              as InvoiceResponse?,
     ) as $Val);
   }
 }
@@ -298,7 +440,11 @@ abstract class _$$ApplicationStateImplCopyWith<$Res>
       __$$ApplicationStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({bool isLoading, ErrorModel? error, PersonModel? userInfo});
+  $Res call(
+      {bool isLoading,
+      ErrorModel? error,
+      PersonModel? userInfo,
+      InvoiceResponse? invoiceResponse});
 }
 
 /// @nodoc
@@ -317,6 +463,7 @@ class __$$ApplicationStateImplCopyWithImpl<$Res>
     Object? isLoading = null,
     Object? error = freezed,
     Object? userInfo = freezed,
+    Object? invoiceResponse = freezed,
   }) {
     return _then(_$ApplicationStateImpl(
       isLoading: null == isLoading
@@ -331,6 +478,10 @@ class __$$ApplicationStateImplCopyWithImpl<$Res>
           ? _value.userInfo
           : userInfo // ignore: cast_nullable_to_non_nullable
               as PersonModel?,
+      invoiceResponse: freezed == invoiceResponse
+          ? _value.invoiceResponse
+          : invoiceResponse // ignore: cast_nullable_to_non_nullable
+              as InvoiceResponse?,
     ));
   }
 }
@@ -339,7 +490,10 @@ class __$$ApplicationStateImplCopyWithImpl<$Res>
 
 class _$ApplicationStateImpl implements _ApplicationState {
   const _$ApplicationStateImpl(
-      {this.isLoading = false, this.error, this.userInfo});
+      {this.isLoading = false,
+      this.error,
+      this.userInfo,
+      this.invoiceResponse});
 
   @override
   @JsonKey()
@@ -348,10 +502,12 @@ class _$ApplicationStateImpl implements _ApplicationState {
   final ErrorModel? error;
   @override
   final PersonModel? userInfo;
+  @override
+  final InvoiceResponse? invoiceResponse;
 
   @override
   String toString() {
-    return 'ApplicationState(isLoading: $isLoading, error: $error, userInfo: $userInfo)';
+    return 'ApplicationState(isLoading: $isLoading, error: $error, userInfo: $userInfo, invoiceResponse: $invoiceResponse)';
   }
 
   @override
@@ -363,11 +519,14 @@ class _$ApplicationStateImpl implements _ApplicationState {
                 other.isLoading == isLoading) &&
             (identical(other.error, error) || other.error == error) &&
             (identical(other.userInfo, userInfo) ||
-                other.userInfo == userInfo));
+                other.userInfo == userInfo) &&
+            (identical(other.invoiceResponse, invoiceResponse) ||
+                other.invoiceResponse == invoiceResponse));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, isLoading, error, userInfo);
+  int get hashCode =>
+      Object.hash(runtimeType, isLoading, error, userInfo, invoiceResponse);
 
   /// Create a copy of ApplicationState
   /// with the given fields replaced by the non-null parameter values.
@@ -383,7 +542,8 @@ abstract class _ApplicationState implements ApplicationState {
   const factory _ApplicationState(
       {final bool isLoading,
       final ErrorModel? error,
-      final PersonModel? userInfo}) = _$ApplicationStateImpl;
+      final PersonModel? userInfo,
+      final InvoiceResponse? invoiceResponse}) = _$ApplicationStateImpl;
 
   @override
   bool get isLoading;
@@ -391,6 +551,8 @@ abstract class _ApplicationState implements ApplicationState {
   ErrorModel? get error;
   @override
   PersonModel? get userInfo;
+  @override
+  InvoiceResponse? get invoiceResponse;
 
   /// Create a copy of ApplicationState
   /// with the given fields replaced by the non-null parameter values.

@@ -1,5 +1,7 @@
 import 'dart:async';
 
+import 'package:avir_app/features/application/data/models/application_request.dart';
+import 'package:avir_app/features/application/data/models/invoice_model.dart';
 import 'package:avir_app/features/application/data/models/user_response.dart';
 import 'package:avir_app/features/application/domain/entities/application_request.dart';
 import 'package:avir_app/features/application/domain/repository/application_repository.dart';
@@ -21,6 +23,7 @@ class ApplicationBloc extends Bloc<ApplicationEvent, ApplicationState> {
 
   ApplicationBloc(this._repository) : super(const ApplicationState()) {
     on<_GetUserInfoEvent>(_getUserInfoHandler);
+    on<_CreateApplication>(_createApplicationHandler);
   }
 
   FutureOr<void> _getUserInfoHandler(
@@ -28,6 +31,7 @@ class ApplicationBloc extends Bloc<ApplicationEvent, ApplicationState> {
     emit(state.copyWith(
       isLoading: true,
       error: null,
+      invoiceResponse: null
     ));
     try {
       final PersonModel user = await _repository.getUserInfo(event.request);
@@ -62,5 +66,44 @@ class ApplicationBloc extends Bloc<ApplicationEvent, ApplicationState> {
         ),
       );
     }
+  }
+
+  FutureOr<void> _createApplicationHandler(_CreateApplication event, Emitter<ApplicationState> emit) async{
+    emit(state.copyWith(
+        isLoading: true,
+        error: null,
+        invoiceResponse: null
+    ));
+   try{
+     final InvoiceResponse response = await _repository.createResponse(event.request);
+     emit(state.copyWith(
+         isLoading: false,
+         error: null,
+         invoiceResponse: response
+     ));
+   } on DioException catch (e) {
+     emit(
+       state.copyWith(
+         isLoading: false,
+         error: ErrorModel(
+           statusCode: e.response?.statusCode ?? 505,
+           message: e.response?.data['message'] ?? "Something went wrong",
+         ),
+       ),
+     );
+   }
+   catch (e) {
+     emit(
+       state.copyWith(
+         isLoading: false,
+         userInfo: null,
+         error: ErrorModel(
+           statusCode: 505,
+           message: e.toString(),
+         ),
+       ),
+     );
+   }
+
   }
 }

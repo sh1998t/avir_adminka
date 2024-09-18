@@ -8,10 +8,7 @@ part of 'application_request.dart';
 
 ApplicationRequest _$ApplicationRequestFromJson(Map<String, dynamic> json) =>
     ApplicationRequest(
-      user: json['user'] as String,
-      division: (json['division'] as num).toInt(),
-      id: (json['id'] as num).toInt(),
-      guid: json['guid'] as String,
+      duration: (json['duration'] as num).toInt(),
       comment: json['comment'] as String?,
       idCardType: (json['idCardType'] as num).toInt(),
       person: Person.fromJson(json['person'] as Map<String, dynamic>),
@@ -20,15 +17,12 @@ ApplicationRequest _$ApplicationRequestFromJson(Map<String, dynamic> json) =>
       reasonIdCard: (json['reasonIdCard'] as num).toInt(),
       mobilePhone: json['mobilePhone'] as String?,
       phone: json['phone'] as String?,
-      registrationDate: json['registrationDate'] as String,
+      serviceId: json['serviceId'] as String?,
     );
 
 Map<String, dynamic> _$ApplicationRequestToJson(ApplicationRequest instance) =>
     <String, dynamic>{
-      'user': instance.user,
-      'division': instance.division,
-      'id': instance.id,
-      'guid': instance.guid,
+      'serviceId': instance.serviceId,
       'comment': instance.comment,
       'idCardType': instance.idCardType,
       'person': instance.person,
@@ -37,5 +31,5 @@ Map<String, dynamic> _$ApplicationRequestToJson(ApplicationRequest instance) =>
       'reasonIdCard': instance.reasonIdCard,
       'mobilePhone': instance.mobilePhone,
       'phone': instance.phone,
-      'registrationDate': instance.registrationDate,
+      'duration': instance.duration,
     };

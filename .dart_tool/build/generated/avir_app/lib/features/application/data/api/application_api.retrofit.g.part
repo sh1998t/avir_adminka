@@ -18,7 +18,7 @@ class _ApplicationApi implements ApplicationApi {
   final ParseErrorLogger? errorLogger;
 
   @override
-  Future<PersonModel> getUserInfo(ApplicationRequestEntity request) async {
+  Future<PersonModel> getUserInfo(UserInfoRequestEntity request) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     queryParameters.addAll(request.toJson());
@@ -44,6 +44,40 @@ class _ApplicationApi implements ApplicationApi {
     late PersonModel _value;
     try {
       _value = PersonModel.fromJson(_result.data!);
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
+    return _value;
+  }
+
+  @override
+  Future<InvoiceResponse> createApplication(ApplicationRequest request) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    _data.addAll(request.toJson());
+    final _options = _setStreamType<InvoiceResponse>(Options(
+      method: 'POST',
+      headers: _headers,
+      extra: _extra,
+    )
+        .compose(
+          _dio.options,
+          '/api/v1/services/id-card-request',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(
+            baseUrl: _combineBaseUrls(
+          _dio.options.baseUrl,
+          baseUrl,
+        )));
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late InvoiceResponse _value;
+    try {
+      _value = InvoiceResponse.fromJson(_result.data!);
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options);
       rethrow;

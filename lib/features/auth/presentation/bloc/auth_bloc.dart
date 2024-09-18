@@ -22,22 +22,33 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   }
 
   FutureOr<void> _loginHand(AuthEvent event, Emitter<AuthState> emit) async {
-    emit(state.copyWith(isLoginSuccess: false, isLoading: true,error: null));
+    emit(state.copyWith(isLoginSuccess: false, isLoading: true, error: null));
     try {
       await _repository.login(event.request);
       emit(state.copyWith(isLoading: false, isLoginSuccess: true));
     } on DioException catch (e) {
+      if (e.response?.data == null) {
+        emit(
+          state.copyWith(
+            isLoading: false,
+            error: ErrorModel(
+                statusCode: e.response?.statusCode ?? 505,
+                message:
+                    "Something went wrong check your internet or the server is off"),
+          ),
+        );
+      }
       emit(
         state.copyWith(
           isLoading: false,
           error: ErrorModel.fromJson(e.response?.data),
         ),
       );
-    } on PlatformException catch (e) {
+    } catch (e) {
       emit(
         state.copyWith(
           isLoading: false,
-          error: ErrorModel(statusCode: 505, message: e.details),
+          error: ErrorModel(statusCode: 505, message: e.toString()),
         ),
       );
     }

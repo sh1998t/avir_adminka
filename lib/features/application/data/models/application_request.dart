@@ -4,10 +4,7 @@ import 'package:json_annotation/json_annotation.dart';
 part 'application_request.g.dart';
 @JsonSerializable()
 class ApplicationRequest {
-  final String user;
-  final int division;
-  final int id;
-  final String guid;
+  String? serviceId;
   String? comment;
   int idCardType;
   Person person;
@@ -16,13 +13,10 @@ class ApplicationRequest {
   int reasonIdCard;
   String? mobilePhone;
   String? phone;
-  String registrationDate;
+  int duration;
 
   ApplicationRequest({
-    required  this.user,
-    required this.division,
-    required  this.id,
-    required this.guid,
+    required this.duration,
     this.comment,
     required this.idCardType,
     required this.person,
@@ -31,7 +25,9 @@ class ApplicationRequest {
     required this.reasonIdCard,
      this.mobilePhone,
     this.phone,
-    required this.registrationDate,
+    this.serviceId,
 
   });
+
+  Map<String, dynamic> toJson() => _$ApplicationRequestToJson(this);
 }

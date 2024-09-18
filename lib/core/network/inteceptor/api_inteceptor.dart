@@ -29,10 +29,7 @@ class CommonRequestInterceptor extends QueuedInterceptor {
     return super.onResponse(response, handler);
   }
 
-  @override
-  Future onError(DioException err, ErrorInterceptorHandler handler) async {
-    handler.next(err);
-  }
+
 }
 
 class AuthorizedRequestInterceptor extends CommonRequestInterceptor {

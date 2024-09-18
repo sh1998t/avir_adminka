@@ -1,4 +1,4 @@
-abstract class ApplicationRequestEntity {
+abstract class UserInfoRequestEntity {
   final String? serialNumber;
   final String? dateBirth;
   final String? pinpp;
@@ -6,7 +6,7 @@ abstract class ApplicationRequestEntity {
   final bool address;
   final int? doctype;
 
-  ApplicationRequestEntity({
+  UserInfoRequestEntity({
     this.serialNumber,
     this.dateBirth,
     this.pinpp,

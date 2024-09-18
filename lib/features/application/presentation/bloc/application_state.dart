@@ -6,5 +6,6 @@ class ApplicationState with _$ApplicationState {
     @Default(false) bool isLoading,
     ErrorModel? error,
     PersonModel? userInfo,
+    InvoiceResponse? invoiceResponse,
 }) = _ApplicationState;
 }

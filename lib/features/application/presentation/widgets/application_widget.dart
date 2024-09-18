@@ -1,9 +1,11 @@
 import 'package:avir_app/core/constants/moc_data.dart';
 import 'package:avir_app/core/enums/id_cart_type.dart';
 import 'package:avir_app/core/enums/pref_keys.dart';
+import 'package:avir_app/core/enums/reason_id_card.dart';
 import 'package:avir_app/core/service/pdf_service.dart';
 import 'package:avir_app/core/theme/colors.dart';
 import 'package:avir_app/core/utils/formatters/uppercase_formatter.dart';
+import 'package:avir_app/features/application/data/models/application_request.dart';
 import 'package:avir_app/features/application/data/models/invoice_model.dart';
 import 'package:avir_app/features/application/data/models/user_info_request.dart';
 import 'package:avir_app/features/application/data/models/user_response.dart';
@@ -20,9 +22,6 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
-
-
-
 class ApplicationWidget extends StatefulWidget {
   const ApplicationWidget({super.key});
 
@@ -31,7 +30,8 @@ class ApplicationWidget extends StatefulWidget {
 }
 
 class _ApplicationWidgetState extends State<ApplicationWidget> {
-  DocumentType _documentType = DocumentType.passport;
+  DocumentType? _documentType;
+  ReasonIdCardEnum? _selectedReason;
   bool _parents = false;
   bool _address = false;
   bool isMethod1 = true;
@@ -39,14 +39,16 @@ class _ApplicationWidgetState extends State<ApplicationWidget> {
   late final TextEditingController _passNumberController;
   late final TextEditingController _dateOfBirthController;
   late final TextEditingController _pinppController;
+  late final TextEditingController _phoneController;
+  late final TextEditingController _additionPhoneController;
   final MaskTextInputFormatter dateOfBirthFormatter = MaskTextInputFormatter(
       mask: '##.##.####',
       filter: {"#": RegExp(r'[0-9]')},
       type: MaskAutoCompletionType.lazy);
 
-  final List<DocumentType> types = [DocumentType.id, DocumentType.passport];
   int currentStep = 0;
-  IdCartEnum _selectedIdCartType = IdCartEnum.idCard;
+  IdCartEnum? _selectedIdCartType ;
+  late final ApplicationBloc _applicationBloc;
 
   @override
   void initState() {
@@ -55,6 +57,14 @@ class _ApplicationWidgetState extends State<ApplicationWidget> {
     _dateOfBirthController = TextEditingController(text: '27.12.2003');
     _pinppController = TextEditingController();
     _passNumberController = TextEditingController(text: '2628601');
+    _phoneController = TextEditingController();
+    _additionPhoneController = TextEditingController();
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    _applicationBloc = context.read<ApplicationBloc>();
   }
 
   @override
@@ -73,6 +83,9 @@ class _ApplicationWidgetState extends State<ApplicationWidget> {
       height: size.height - 70,
       child: BlocConsumer<ApplicationBloc, ApplicationState>(
         listener: (context, state) {
+          if(state.invoiceResponse != null){
+            PdfService().printCustomersPdf(state.invoiceResponse!);
+          }
           if (state.error != null) {
             showDialog(
                 context: context,
@@ -89,10 +102,7 @@ class _ApplicationWidgetState extends State<ApplicationWidget> {
               const SizedBox(
                 height: 22,
               ),
-              MainOutlineButton(isActive: true, title: 'Print', onPressed: (){
-                final InvoiceResponse response = InvoiceResponse.fromJson(MockData.paymentData);
-                PdfService().printCustomersPdf(response);
-              }),
+
               Expanded(
                 child: PageView(
                   children: [
@@ -347,15 +357,58 @@ class _ApplicationWidgetState extends State<ApplicationWidget> {
                                 )
                               ],
                             ),
-                            const SizedBox(
-                              height: 22,
+                            Visibility(
+                              visible: isMethod1,
+                              child: Container(
+                                padding: const EdgeInsets.all(12),
+                                decoration: BoxDecoration(
+                                  color: AppColors.textFieldBack,
+                                  borderRadius: BorderRadius.circular(4),
+                                ),
+                                height: 46,
+                                margin: EdgeInsets.only(top: 22),
+                                child: DropdownButton<DocumentType>(
+                                  borderRadius: BorderRadius.circular(4),
+                                  isExpanded: true,
+                                  value: _documentType,
+                                  hint: Text(
+                                    "Hujjat turini tanlang",
+                                    style:
+                                        Theme.of(context).textTheme.bodyLarge,
+                                  ),
+                                  elevation: 16,
+                                  style:
+                                      const TextStyle(color: Colors.deepPurple),
+                                  underline: const SizedBox.shrink(),
+                                  onChanged: (DocumentType? value) {
+                                    // This is called when the user selects an item.
+                                    setState(() {
+                                      _documentType = value!;
+                                    });
+                                  },
+                                  items: DocumentType.values
+                                      .map<DropdownMenuItem<DocumentType>>(
+                                          (DocumentType value) {
+                                    return DropdownMenuItem<DocumentType>(
+                                      value: value,
+                                      child: Text(
+                                        (value.key['name'] as String).tr(),
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .bodyMedium,
+                                      ),
+                                    );
+                                  }).toList(),
+                                ),
+                              ),
                             ),
-                            const SizedBox(
+                            SizedBox(
                               height: 22,
                             ),
                             Visibility(
                               visible: user != null,
                               child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   const Divider(
                                     color: AppColors.divider,
@@ -480,37 +533,35 @@ class _ApplicationWidgetState extends State<ApplicationWidget> {
                                       ),
                                     ],
                                   ),
-                                ],
-                              ),
-                            ),
-                            const SizedBox(height: 20,),
-                            Visibility(
-                              visible: user != null,
-                              child: Container(
-                                padding: const EdgeInsets.all(12),
-                                decoration: BoxDecoration(
-                                  color: AppColors.textFieldBack,
-                                  borderRadius: BorderRadius.circular(4),
-                                ),
-                                height: 46,
-                                width: size.width * 0.65,
-                                child: DropdownButton<IdCartEnum>(
-                                  borderRadius: BorderRadius.circular(4),
-                                  isExpanded: true,
-                                  value: _selectedIdCartType,
-                                  elevation: 16,
-                                  style:
-                                  const TextStyle(color: Colors.deepPurple),
-                                  underline: const SizedBox.shrink(),
-                                  onChanged: (IdCartEnum? value) {
-                                    // This is called when the user selects an item.
-                                    setState(() {
-                                      _selectedIdCartType = value!;
-                                    });
-                                  },
-                                  items: IdCartEnum.values
-                                      .map<DropdownMenuItem<IdCartEnum>>(
-                                          (IdCartEnum value) {
+                                  const SizedBox(
+                                    height: 20,
+                                  ),
+                                  Container(
+                                    padding: const EdgeInsets.all(12),
+                                    decoration: BoxDecoration(
+                                      color: AppColors.textFieldBack,
+                                      borderRadius: BorderRadius.circular(4),
+                                    ),
+                                    height: 46,
+                                    width: size.width * 0.65,
+                                    child: DropdownButton<IdCartEnum>(
+                                      borderRadius: BorderRadius.circular(4),
+                                      isExpanded: true,
+                                      value: _selectedIdCartType,
+                                      elevation: 16,
+                                      hint: Text('document_type_question'.tr(), style: Theme.of(context).textTheme.bodyMedium,),
+                                      style: const TextStyle(
+                                          color: Colors.deepPurple),
+                                      underline: const SizedBox.shrink(),
+                                      onChanged: (IdCartEnum? value) {
+                                        // This is called when the user selects an item.
+                                        setState(() {
+                                          _selectedIdCartType = value!;
+                                        });
+                                      },
+                                      items: IdCartEnum.values
+                                          .map<DropdownMenuItem<IdCartEnum>>(
+                                              (IdCartEnum value) {
                                         return DropdownMenuItem<IdCartEnum>(
                                           value: value,
                                           child: Text(
@@ -521,11 +572,90 @@ class _ApplicationWidgetState extends State<ApplicationWidget> {
                                           ),
                                         );
                                       }).toList(),
-                                ),
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                    height: 20,
+                                  ),
+                                  Container(
+                                    padding: const EdgeInsets.all(12),
+                                    decoration: BoxDecoration(
+                                      color: AppColors.textFieldBack,
+                                      borderRadius: BorderRadius.circular(4),
+                                    ),
+                                    height: 46,
+                                    width: size.width * 0.65,
+                                    child: DropdownButton<ReasonIdCardEnum>(
+                                      borderRadius: BorderRadius.circular(4),
+                                      isExpanded: true,
+                                      hint: Text('reason_exchange'.tr(), style: Theme.of(context).textTheme.bodyMedium ,),
+                                      value: _selectedReason,
+                                      elevation: 16,
+                                      style: const TextStyle(
+                                          color: Colors.deepPurple),
+                                      underline: const SizedBox.shrink(),
+                                      onChanged: (ReasonIdCardEnum? value) {
+                                        // This is called when the user selects an item.
+                                        setState(() {
+                                          _selectedReason = value!;
+                                        });
+                                      },
+                                      items: ReasonIdCardEnum.values.map<
+                                              DropdownMenuItem<
+                                                  ReasonIdCardEnum>>(
+                                          (ReasonIdCardEnum value) {
+                                        return DropdownMenuItem<
+                                            ReasonIdCardEnum>(
+                                          value: value,
+                                          child: Text(
+                                            (value.key['name'] as String).tr(),
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .bodyMedium,
+                                          ),
+                                        );
+                                      }).toList(),
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                    height: 20,
+                                  ),
+                                  Text(
+                                    'phone_number',
+                                    style:
+                                        Theme.of(context).textTheme.bodyMedium,
+                                  ),
+                                  const SizedBox(
+                                    height: 22,
+                                  ),
+                                  Row(
+                                    children: [
+                                      MainTextField(
+                                        width: 170,
+                                        title: "main".tr(),
+                                        controller: _phoneController,
+                                        hintText: "phone_number".tr(),
+                                      ),
+                                      const SizedBox(
+                                        width: 22,
+                                      ),
+                                      MainTextField(
+                                        width: 170,
+                                        title: "additional".tr(),
+                                        controller: _additionPhoneController,
+                                        hintText: "phone_number".tr(),
+                                      ),
+                                    ],
+                                  ),
+                                  const SizedBox(
+                                    height: 22,
+                                  ),
+                                  MainTextField(
+                                    height: 90,
+                                    title: "comment".tr(),
+                                  ),
+                                ],
                               ),
-                            ),
-                            const SizedBox(
-                              height: 20,
                             ),
                             MyButton(
                               isLoading: state.isLoading,
@@ -533,33 +663,68 @@ class _ApplicationWidgetState extends State<ApplicationWidget> {
                                   ? 'check'.tr()
                                   : 'create_application'.tr(),
                               onPressed: () {
-                                context.read<ApplicationBloc>().add(
+                                if (user == null) {
+                                  if (isMethod1) {
+                                    if (_documentType == null) {
+                                      ScaffoldMessenger.of(context)
+                                          .showSnackBar(SnackBar(
+                                        backgroundColor: AppColors.red.withOpacity(0.5),
+                                              content: Text(
+                                        "select_document_error".tr(),
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .bodyMedium?.copyWith(color: Colors.white),
+                                      )));
+                                    } else {
+                                      _applicationBloc.add(
+                                        ApplicationEvent.getUserInfo(
+                                            UserInfoRequest(
+                                          serialNumber:
+                                              "${_passSeriesController.text}${_passNumberController.text}",
+                                          parents: _parents,
+                                          address: _address,
+                                          doctype: _documentType!.key["id"],
+                                          dateBirth:
+                                              _dateOfBirthController.text,
+                                          // dateBirth: _dateOfBirthController.text,
+                                        )),
+                                      );
+                                    }
+                                  } else {
+                                    _applicationBloc.add(
                                       ApplicationEvent.getUserInfo(
-                                        isMethod1
-                                            ? UserInfoRequest(
-                                                serialNumber:
-                                                    "${_passSeriesController.text}${_passNumberController.text}",
-                                                parents: _parents,
-                                                address: _address,
-                                                doctype:
-                                                    _documentType.key["id"],
-                                                dateBirth:
-                                                    _dateOfBirthController.text,
-
-                                                // dateBirth: _dateOfBirthController.text,
-                                              )
-                                            : UserInfoWithUUIDRequest(
-                                                parents: _parents,
-                                                address: _address,
-                                                pinpp: _pinppController.text),
+                                        UserInfoWithUUIDRequest(
+                                          parents: _parents,
+                                          address: _address,
+                                          pinpp: _pinppController.text,
+                                        ),
                                       ),
                                     );
+                                  }
+                                } else {
+                                  _applicationBloc.add(
+                                    ApplicationEvent.createApplication(
+                                      ApplicationRequest(
+                                          duration: _selectedIdCartType
+                                              !.key['duration'],
+                                          idCardType:
+                                              _selectedIdCartType!.key['id'],
+                                          person: user.person,
+                                          newPerson: user.person,
+                                          document: user.document,
+                                          reasonIdCard:
+                                              _selectedReason!.key['id']),
+                                    ),
+                                  );
+                                }
                               },
                               width: double.infinity,
                               height: 58,
                               textColor: Colors.white,
                             ),
-                            const SizedBox(height: 20,)
+                            const SizedBox(
+                              height: 20,
+                            )
                           ],
                         ),
                       ),
@@ -573,6 +738,4 @@ class _ApplicationWidgetState extends State<ApplicationWidget> {
       ),
     );
   }
-
-
 }

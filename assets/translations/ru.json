@@ -35,7 +35,28 @@
   "id_cart": "ЎЗБЕКИСТОН РЕСПУБЛИКАСИ ФУҚАРОСИНИНГ ID КАРТАСИ",
   "no_citizenship_id_cart" : "ФУҚАРОЛИГИ БЎЛМАГАН ШАХС ЎЗБЕКИСТОН РЕСПУБЛИКАСИДА ЯШАШ ID КАРТАСИ",
   "foreigner_id_cart": "ЕТ ЭЛ ФУҚАРОСИНИНГ ЎЗБЕКИСТОН РЕСПУБЛИКАСИДА ЯШАШ ID КАРТАСИ",
-  "child_id_cart": "ВОЯГА ЕТМАГАН БОЛАНИНГ ЎЗБЕКИСТОН РЕСПУБЛИКАСИ ID КАРТАСИ"
+  "child_id_cart": "ВОЯГА ЕТМАГАН БОЛАНИНГ ЎЗБЕКИСТОН РЕСПУБЛИКАСИ ID КАРТАСИ",
+  "phone_number": "Telefon raqam",
+  "main": "Asosiy",
+  "additional": "Qo'shimcha",
+  "comment": "Komentariya",
+  "document_swap": "ПАСПОРТ ЁКИ ID КАРТАНИ АЛМАШТИРИШ",
+  "document_lost": "ҲУЖЖАТ ЙЎҚОТИЛГАН САБАБЛИ",
+  "document_acceptance": "ЎзР ФУҚАРОЛИГИНИ ҚАБУЛ ҚИЛИШ",
+  "document_birthCertificate": "ТУҒИЛГАНЛИК ГУВОҲНОМА АСОСИДА МУРОЖАТ ҚИЛИШ",
+  "document_recognition_citizenship": "ЎзР ФУҚАРОЛИГИНИ ТАН ОЛИШ",
+  "document_invalid": "ҲУЖЖАТНИ ФУҚАРО ТОМОНИДАН ЯРОҚСИЗ ХОЛГА КЕЛТИРИШ",
+  "document_error": "МАЪЛУМОТЛАРДА ҲАТОЛИК ТОПИЛГАНЛИГИ",
+  "document_FBSh_swap": "ФБШ ҲУЖЖАТИНИ АЛМАШТИРИШ",
+  "document_FBSh_first": "ФБШ БИРИНЧИ МАРОТАБА МУРОЖАТ ҚИЛИШ",
+  "document_foreign_swap": "ХОРИЖИЙ ФУҚАРО ҲУЖЖАТИНИ АЛМАШТИРИШ",
+  "document_first_time": "ХОРИЖИЙ ФУҚАРО БИРИНЧИ МАРОТАБА МУРОЖАТ ҚИЛИШ",
+  "document_baby_id": "ТУҒИЛГАН БОЛАГА ID КАРТА БЕРИШ",
+  "document_baby_swap": "БОЛА ID КАРТАСИНИ АЛМАШТИРИШ",
+  "document_personal_number": "ШАХСИЙ РАҚАМ ОЛИШГА СЎРОВНОМА",
+  "select_document_error": "Hujjat turini tanlang",
+  "reason_exchange": "Nima sababdan almashtirmoqchi?",
+  "document_type_question": "Hujjat turini tanlang."
 
 
 

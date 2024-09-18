@@ -10,12 +10,14 @@ enum PrefKeys {
 
 enum DocumentType {
   passport({
-    "key": "passport",
+    "name": "passport",
     "id": 1,
+
   }),
   id({
-    "key": "ID",
+    "name": "ID",
     "id": 1,
+
   });
 
   final Map<String, dynamic> key;

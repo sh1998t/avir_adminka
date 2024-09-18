@@ -4,7 +4,7 @@ import 'package:json_annotation/json_annotation.dart';
 part 'user_info_request.g.dart';
 
 @JsonSerializable()
-class UserInfoRequest extends ApplicationRequestEntity {
+class UserInfoRequest extends UserInfoRequestEntity {
   UserInfoRequest(
       {required super.doctype,
       required super.parents,
@@ -16,7 +16,7 @@ class UserInfoRequest extends ApplicationRequestEntity {
 }
 
 @JsonSerializable()
-class UserInfoWithUUIDRequest extends ApplicationRequestEntity {
+class UserInfoWithUUIDRequest extends UserInfoRequestEntity {
   UserInfoWithUUIDRequest({
     required super.parents,
     required super.address,
